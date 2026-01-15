@@ -1,16 +1,16 @@
 /* General Styles */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f0f4f8;
+  background-color: #E0F7FA; /* light sky background */
   margin: 0;
-  color: #333;
+  color: #0C4A50; /* dark teal text */
 }
 
 /* Hero Section */
 .hero {
   text-align: center;
   padding: 80px 20px;
-  background: linear-gradient(135deg, #4a90e2, #50e3c2);
+  background: linear-gradient(135deg, #1B9AAA, #147783);
   color: white;
 }
 
@@ -27,8 +27,8 @@ body {
 .hero .btn {
   display: inline-block;
   padding: 12px 30px;
-  background-color: #fff;
-  color: #4a90e2;
+  background-color: #E0F7FA;
+  color: #147783;
   border-radius: 8px;
   font-weight: bold;
   text-decoration: none;
@@ -36,8 +36,8 @@ body {
 }
 
 .hero .btn:hover {
-  background-color: #4a90e2;
-  color: #fff;
+  background-color: #76D6E1;
+  color: #0C4A50;
 }
 
 /* Cards Container */
@@ -52,20 +52,20 @@ body {
 
 /* Individual Card */
 .card {
-  background-color: #fff;
+  background-color: #ffffff;
   padding: 25px 30px;
   border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 20px rgba(12, 74, 80, 0.12);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  box-shadow: 0 10px 25px rgba(12, 74, 80, 0.18);
 }
 
 .card h3 {
-  color: #4a90e2;
+  color: #1B9AAA;
   font-size: 1.8rem;
   margin-bottom: 12px;
 }
@@ -73,6 +73,7 @@ body {
 .card p {
   margin-bottom: 15px;
   font-size: 1rem;
+  color: #0C4A50;
 }
 
 .card ul {
@@ -96,7 +97,6 @@ body {
 footer {
   text-align: center;
   padding: 20px;
-  background-color: #4a90e2;
-  color: #fff;
+  background-color: #0C4A50;
+  color: #E0F7FA;
 }
-
