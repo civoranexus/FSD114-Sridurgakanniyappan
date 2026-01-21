@@ -26,12 +26,7 @@ body {
 
 .hero .btn {
   display: inline-block;
-  padding: 12px 30px;
-  background-color: #E0F7FA;
-  color: #147783;
-  border-radius: 8px;
-  font-weight: bold;
-  text-decoration: none;
+    text-decoration: none;
   transition: all 0.3s ease;
 }
 
@@ -99,4 +94,16 @@ footer {
   padding: 20px;
   background-color: #0C4A50;
   color: #E0F7FA;
+}
+.course-card {
+  background: #ffffff;
+  padding: 15px;
+  margin: 15px;
+  border-radius: 8px;
+  width: 250px;
+  box-shadow: 0 0 6px #ccc;
+}
+.site-logo {
+  height: 80px;
+  margin-bottom: 20px;
 }

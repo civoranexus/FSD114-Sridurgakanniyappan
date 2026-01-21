@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EduVillage – Student Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="dashboard.css">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo-container">
+    <img src="Long_logo.png" alt="EduVillage Logo">
+    <h1> EduVillage </h1>
+  </div>
+
+  <div class="profile">
+    <img src="https://i.pravatar.cc/40" alt="Profile">
+    <span>Hello, Student</span>
+  </div>
+</header>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <nav>
+    <a class="active">Dashboard</a>
+    <a>My Courses</a>
+    <a>Assignments</a>
+    <a>Quizzes</a>
+    <a>Grades</a>
+    <a>Messages</a>
+    <a>Settings</a>
+    <a href="login.html">Logout</a>
+  </nav>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="card">
+      <h3>Enrolled Courses</h3>
+      <p>5</p>
+    </div>
+    <div class="card">
+      <h3>Completed</h3>
+      <p>2</p>
+    </div>
+    <div class="card">
+      <h3>Pending Tasks</h3>
+      <p>3</p>
+    </div>
+  </section>
+
+  <!-- COURSES -->
+  <section class="courses">
+    <h2>My Courses</h2>
+
+    <div class="course-card">
+      <h3>Web Development Basics</h3>
+      <p>HTML, CSS, JavaScript fundamentals</p>
+
+      <div class="progress-bar">
+        <div class="progress" style="width:70%">70%</div>
+      </div>
+
+      <button>Continue Learning</button>
+    </div>
+
+    <div class="course-card">
+      <h3>React Fundamentals</h3>
+      <p>Components, Hooks, State</p>
+
+      <div class="progress-bar">
+        <div class="progress" style="width:40%">40%</div>
+      </div>
+
+      <button>Continue Learning</button>
+    </div>
+  </section>
+
+</main>
+
+<script src="dashboard.js"></script>
+</body>
+</html>

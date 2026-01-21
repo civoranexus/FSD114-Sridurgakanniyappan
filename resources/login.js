@@ -9,5 +9,19 @@ function validateLogin() {
     return;
   }
 
+  //  Login success
   alert("Login successful (demo)");
+
+  // 🔹 READ ROLE FROM URL
+  const params = new URLSearchParams(window.location.search);
+  const role = params.get("role");
+
+  // 🔹 ROLE-BASED REDIRECT
+  if (role === "student") {
+    window.location.href = "resources/dashboard.html";
+  } else if (role === "teacher") {
+    window.location.href = "resources/teacher-dashboard.html";
+  } else if (role === "admin") {
+    window.location.href = "resources/admin-dashboard.html";
+  }
 }
