@@ -148,13 +148,413 @@ button:hover {
   background: var(--primary);
 }
 
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .sidebar {
     display: none;
+    z-index: 1000;
+  }
+  
+  .sidebar.show {
+    display: block;
   }
 
   .main {
     margin-left: 0;
   }
+  
+  .menu-btn {
+    display: block;
+  }
+}
+
+.menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+/* =========================================
+   NEW STYLES FOR ENHANCED DASHBOARD
+   ========================================= */
+
+/* List Containers (Assignments, Quizzes, Messages) */
+.list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.list-item {
+  background: var(--white);
+  padding: 15px 20px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.item-details h3 {
+  font-size: 1.1rem;
+  color: var(--secondary);
+  margin-bottom: 5px;
+}
+
+.item-details p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.item-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Status Badges */
+.status {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.status.pending {
+  background: #FFF3E0;
+  color: #E65100;
+}
+
+.status.submitted, .status.completed {
+  background: #E8F5E9;
+  color: #2E7D32;
+}
+
+/* Grades Table */
+.grades-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.grades-table th, .grades-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.grades-table th {
+  background: var(--secondary);
+  color: var(--white);
+}
+
+.grades-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Settings Form */
+.settings-form {
+  background: var(--white);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  max-width: 600px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--secondary);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #f9f9f9;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-weight: normal;
+}
+
+/* Course List (Grid for My Courses page) */
+.course-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* =========================================
+   COURSE PLAYER STYLES
+   ========================================= */
+
+.course-player-container {
+  display: flex;
+  gap: 20px;
+  height: calc(100vh - 120px); /* Fit within remaining height */
+  overflow: hidden;
+}
+
+/* Player Sidebar (Module List) */
+.player-sidebar {
+  width: 300px;
+  background: var(--white);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.player-sidebar h3 {
+  margin-bottom: 15px;
+  color: var(--primary);
+  font-size: 1.2rem;
+}
+
+.module-list {
+  list-style: none;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.module-item {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.3s;
+  border-radius: 6px;
+  margin-bottom: 5px;
+  font-size: 0.95rem;
+}
+
+.module-item:hover {
+  background: #f0f0f0;
+}
+
+.module-item.active {
+  background: var(--bg-light);
+  color: var(--primary);
+  border-left: 4px solid var(--primary);
+  font-weight: 600;
+}
+
+.module-status {
+  font-size: 0.8rem;
+  width: 20px;
+  text-align: center;
+}
+
+.btn-back {
+  margin-top: 15px;
+  background: transparent;
+  color: var(--secondary);
+  border: 1px solid var(--secondary);
+  width: 100%;
+}
+
+.btn-back:hover {
+  background: var(--secondary);
+  color: var(--white);
+}
+
+/* Player Content Area */
+.player-content {
+  flex: 1;
+  background: var(--white);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.lesson-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.lesson-info h2 {
+  color: var(--text-dark);
+  margin-bottom: 15px;
+}
+
+.lesson-notes {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid var(--accent-light);
+}
+
+.lesson-notes h4 {
+  margin-bottom: 5px;
+  color: var(--secondary);
+}
+
+/* Responsive Player */
+@media (max-width: 992px) {
+  .course-player-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .player-sidebar {
+    width: 100%;
+    max-height: 250px;
+  }
+}
+
+/* =========================================
+   QUIZ & CERTIFICATE STYLES
+   ========================================= */
+
+/* Quiz Container */
+.quiz-container {
+  background: var(--white);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.quiz-header {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.quiz-header h2 {
+  color: var(--primary);
+}
+
+.question-box {
+  margin-bottom: 25px;
+}
+
+.question-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option-label {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.option-label:hover {
+  background: var(--bg-light);
+  border-color: var(--accent-light);
+}
+
+.option-label input {
+  margin-right: 12px;
+}
+
+.quiz-result {
+  text-align: center;
+  padding: 20px;
+}
+
+.score-display {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--primary);
+  margin: 15px 0;
+}
+
+/* Certificate List */
+.certificate-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #ffffff, #f0fbfc);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-left: 5px solid var(--primary);
+}
+
+.cert-info h3 {
+  color: var(--secondary);
+  margin-bottom: 5px;
+}
+
+.cert-info p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.btn-download {
+  background: var(--text-dark);
+}
+
+.btn-download:hover {
+  background: #000;
 }

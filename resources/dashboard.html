@@ -16,9 +16,13 @@
 
 <!-- HEADER -->
 <header class="header">
+  <button id="menuBtn" class="menu-btn">☰</button>
   <div class="logo-container">
-    <img src="Long_logo.png" alt="EduVillage Logo">
-    <h1> EduVillage </h1>
+    <img src="Long_logo.png" alt="Civora Nexus Logo">
+    <div>
+      <h1>EduVillage</h1>
+      <small style="font-size: 0.8rem; opacity: 0.9;">by Civora Nexus</small>
+    </div>
   </div>
 
   <div class="profile">
@@ -28,21 +32,21 @@
 </header>
 
 <!-- SIDEBAR -->
-<aside class="sidebar">
+  <aside class="sidebar">
   <nav>
-    <a class="active">Dashboard</a>
-    <a>My Courses</a>
-    <a>Assignments</a>
-    <a>Quizzes</a>
-    <a>Grades</a>
-    <a>Messages</a>
-    <a>Settings</a>
-    <a href="login.html">Logout</a>
+    <a class="active" href="#" data-page="dashboard">Dashboard</a>
+    <a href="./mycourses.html" data-page="courses">My Courses</a>
+    <a href="" data-page="assignments">Assignments</a>
+    <a href="#" data-page="quizzes">Quizzes</a>
+    <a href="#" data-page="grades">Grades</a>
+    <a href="#" data-page="messages">Messages</a>
+    <a href="#" data-page="settings">Settings</a>
+    <a href="#" id="logoutBtn">Logout</a>
   </nav>
 </aside>
 
 <!-- MAIN CONTENT -->
-<main class="main">
+<main id="mainContent" class="main">
 
   <!-- STATS -->
   <section class="stats">
@@ -72,7 +76,7 @@
         <div class="progress" style="width:70%">70%</div>
       </div>
 
-      <button>Continue Learning</button>
+      <button onclick="loadCourse('web-development-basics')">Continue Learning</button>
     </div>
 
     <div class="course-card">
@@ -83,7 +87,7 @@
         <div class="progress" style="width:40%">40%</div>
       </div>
 
-      <button>Continue Learning</button>
+      <button onclick="loadCourse('react-fundamentals')">Continue Learning</button>
     </div>
   </section>
 

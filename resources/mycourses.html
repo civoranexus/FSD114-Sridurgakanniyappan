@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EduVillage – My Courses</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="dashboard.css">
+  
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Specific styles for My Courses page */
+    .course-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    
+    /* Ensure .btn matches dashboard button style */
+    .btn {
+      display: inline-block;
+      background: var(--secondary);
+      color: var(--white);
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 10px;
+      transition: background 0.3s;
+    }
+    
+    .btn:hover {
+      background: var(--primary);
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Resume section styles */
+    #start {
+        background: var(--white);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo-container">
+    <img src="Long_logo.png" alt="EduVillage Logo">
+    <h1> EduVillage </h1>
+  </div>
+
+  <div class="profile">
+    <img src="https://i.pravatar.cc/40" alt="Profile">
+    <span>Hello, Student</span>
+  </div>
+</header>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a class="active" href="mycourses.html">My Courses</a>
+    <a href="#">Assignments</a>
+    <a href="#">Quizzes</a>
+    <a href="#">Grades</a>
+    <a href="#">Messages</a>
+    <a href="#">Settings</a>
+    <a href="#" id="logoutBtn">Logout</a>
+  </nav>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+    <div id="content">
+      <!-- Filled by script -->
+    </div>
+</main>
+
+<script>
+    // Logout Logic (Duplicated from dashboard.js to function independently)
+    const logoutEl = document.getElementById("logoutBtn");
+    if (logoutEl) {
+      logoutEl.addEventListener("click", (e) => {
+        e.preventDefault();
+        const ok = confirm("Are you sure you want to log out?");
+        if (!ok) return;
+        localStorage.removeItem("isLoggedIn");
+        window.location.href = "login.html";
+      });
+    }
+
+    // Existing Course Logic
+    const courses = {
+      'web-development-basics': {
+        title: 'Web Development Basics',
+        desc: 'HTML, CSS, JavaScript fundamentals. Continue from where you left off.'
+      },
+      'react-fundamentals': {
+        title: 'React Fundamentals',
+        desc: 'Components, Hooks, State. Continue building your app.'
+      }
+    };
+
+    function slugToTitle(slug){
+      return courses[slug] ? courses[slug].title : null;
+    }
+
+    const params = new URLSearchParams(location.search);
+    const selected = params.get('course');
+    const content = document.getElementById('content');
+
+    if(selected && courses[selected]){
+      const c = courses[selected];
+      content.innerHTML = `
+        <a class="back-link" href="mycourses.html">← Back to Courses</a>
+        <h1>Ongoing Course: ${c.title}</h1>
+        <p style="margin-bottom: 20px; color: var(--text-dark);">${c.desc}</p>
+        <div style="margin-top:20px">
+          <a class="btn" href="#start">Resume Course</a>
+        </div>
+        <section id="start" style="margin-top:30px">
+          <h2>Next Lesson</h2>
+          <p>This is a placeholder for the next lesson content.</p>
+        </section>
+      `;
+    } else {
+      // show list of ongoing courses
+      let html = '<h2 style="margin-bottom: 20px;">My Courses</h2><div class="course-list">';
+      for(const slug in courses){
+        const c = courses[slug];
+        html += `
+          <div class="course-card">
+            <h3>${c.title}</h3>
+            <p>${c.desc}</p>
+            <div class="progress-bar">
+                <div class="progress" style="width: ${slug === 'web-development-basics' ? '70%' : '40%'}">
+                    ${slug === 'web-development-basics' ? '70%' : '40%'}
+                </div>
+            </div>
+            <a class="btn" href="mycourses.html?course=${slug}">Open Course</a>
+          </div>
+        `;
+      }
+      html += '</div>';
+      content.innerHTML = html;
+    }
+</script>
+</body>
+</html>
