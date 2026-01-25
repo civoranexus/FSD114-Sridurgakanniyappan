@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>EduVillage – Assignments</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <button id="menuBtn" class="menu-btn">☰</button>
+
+        <div class="logo-container">
+            <img src="Long_logo.png" alt="Civora Nexus Logo">
+            <div>
+                <h1>EduVillage</h1>
+                <small style="font-size: 0.8rem; opacity: 0.9;">by Civora Nexus</small>
+            </div>
+        </div>
+
+        <div class="profile">
+            <img src="https://i.pravatar.cc/40" alt="Profile">
+            <span>Hello, Student</span>
+        </div>
+    </header>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <nav>
+            <a href="student-dashboard.html">Dashboard</a>
+            <a href="mycourses.html">My Courses</a>
+            <a class="active" href="assignments.html">Assignments</a>
+            <a href="quiz.html">Quizzes</a>
+            <a href="certificates.html">Certificates</a>
+            <a href="messages.html">Messages</a>
+            <a href="settings.html">Settings</a>
+            <a href="login.html" id="logoutBtn">Logout</a>
+        </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main id="mainContent" class="main">
+        <h2>Assignments</h2>
+
+        <div class="list-container">
+            <!-- Assignment 1 -->
+            <div class="list-item">
+                <div class="item-details">
+                    <h3>Build a Portfolio Website</h3>
+                    <p>Course: Web Development Basics</p>
+                    <p>Due: 25th Jan 2026</p>
+                </div>
+                <div class="item-actions">
+                    <span class="status pending">Pending</span>
+                    <button onclick="alert('Upload functionality coming soon')">Submit</button>
+                </div>
+            </div>
+
+            <!-- Assignment 2 -->
+            <div class="list-item">
+                <div class="item-details">
+                    <h3>React To-Do App</h3>
+                    <p>Course: React Fundamentals</p>
+                    <p>Due: 30th Jan 2026</p>
+                </div>
+                <div class="item-actions">
+                    <span class="status pending">Pending</span>
+                    <button onclick="alert('Upload functionality coming soon')">Submit</button>
+                </div>
+            </div>
+
+            <!-- Assignment 3 -->
+            <div class="list-item">
+                <div class="item-details">
+                    <h3>Python Snake Game</h3>
+                    <p>Course: Python for Beginners</p>
+                    <p>Submitted on: 12th Jan 2026</p>
+                </div>
+                <div class="item-actions">
+                    <span class="status submitted">Submitted</span>
+                    <span class="status completed">Grade: 95/100</span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="student-dashboard.js"></script>
+</body>
+
+</html>

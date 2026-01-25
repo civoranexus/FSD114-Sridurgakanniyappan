@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+  
 <head>
   <meta charset="UTF-8">
   <title>EduVillage - Online Learning Platform</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <!-- Hero Section -->
@@ -15,7 +17,11 @@
 
     <h1>Welcome to EduVillage</h1>
     <p>Your one-stop e-learning platform for Students, Teachers, and Admins.</p>
-    <a href="#students" class="btn">Get Started</a>
+
+    <!-- Get Started Button -->
+    <button class="btn" onclick="scrollToSection('students')">
+      Get Started
+    </button>
   </header>
 
   <main>
@@ -32,7 +38,11 @@
           <li>Collaborate with peers through group projects and discussion forums.</li>
           <li>Access expert guidance and resources anytime, anywhere.</li>
         </ul>
-        <a href="login.html?role=student" class="btn">Student Login</a>
+
+        <!-- Student Login Button -->
+        <button class="btn" onclick="goToLogin('student')">
+          Student Login
+        </button>
       </section>
 
       <!-- Teachers Card -->
@@ -46,7 +56,11 @@
           <li>Leverage analytics to understand learning trends and optimize teaching.</li>
           <li>Collaborate with fellow educators and share best practices.</li>
         </ul>
-        <a href="login.html?role=teacher" class="btn">Teacher Login</a>
+
+        <!-- Teacher Login Button -->
+        <button class="btn" onclick="goToLogin('teacher')">
+          Teacher Login
+        </button>
       </section>
 
       <!-- Admins Card -->
@@ -60,7 +74,11 @@
           <li>Ensure data security and privacy compliance at all times.</li>
           <li>Provide timely support and resolve issues for students and teachers.</li>
         </ul>
-        <a href="login.html?role=admin" class="btn">Admin Login</a>
+
+        <!-- Admin Login Button -->
+        <button class="btn" onclick="goToLogin('admin')">
+          Admin Login
+        </button>
       </section>
 
     </div>
@@ -72,6 +90,6 @@
   </footer>
 
   <script src="script.js"></script>
-
 </body>
+
 </html>

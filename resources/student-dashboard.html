@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>EduVillage – My Courses</title>
+  <title>EduVillage – Student Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- CSS -->
@@ -37,8 +37,8 @@
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <nav>
-      <a href="student-dashboard.html">Dashboard</a>
-      <a class="active" href="mycourses.html">My Courses</a>
+      <a class="active" href="student-dashboard.html">Dashboard</a>
+      <a href="mycourses.html">My Courses</a>
       <a href="assignments.html">Assignments</a>
       <a href="quiz.html">Quizzes</a>
       <a href="certificates.html">Certificates</a>
@@ -50,18 +50,39 @@
 
   <!-- MAIN CONTENT -->
   <main id="mainContent" class="main">
-    <section class="courses">
-      <h2>My Courses</h2>
-      <div class="course-list">
-        <!-- Courses rendered here by JS or static for now -->
+
+    <!-- DASHBOARD CONTENT -->
+    <section id="dashboardHome">
+
+      <!-- STATS -->
+      <section class="stats">
+        <div class="card">
+          <h3>Enrolled Courses</h3>
+          <p>5</p>
+        </div>
+        <div class="card">
+          <h3>Completed</h3>
+          <p>2</p>
+        </div>
+        <div class="card">
+          <h3>Pending Tasks</h3>
+          <p>3</p>
+        </div>
+      </section>
+
+      <!-- IN-PROGRESS COURSES -->
+      <section class="courses">
+        <h2>My Courses</h2>
+
         <div class="course-card">
           <h3>Web Development Basics</h3>
-          <p>HTML, CSS, JavaScript</p>
+          <p>HTML, CSS, JavaScript fundamentals</p>
           <div class="progress-bar">
             <div class="progress" style="width:70%">70%</div>
           </div>
-          <button onclick="window.location.href='course-player.html?course=web-development-basics'">Resume
-            Course</button>
+          <button onclick="window.location.href='course-player.html?course=web-development-basics'">
+            Continue Learning
+          </button>
         </div>
 
         <div class="course-card">
@@ -70,17 +91,15 @@
           <div class="progress-bar">
             <div class="progress" style="width:40%">40%</div>
           </div>
-          <button onclick="window.location.href='course-player.html?course=react-fundamentals'">Resume Course</button>
+          <button onclick="window.location.href='course-player.html?course=react-fundamentals'">
+            Continue Learning
+          </button>
         </div>
+      </section>
 
-        <div class="course-card">
-          <h3>Full Stack Development</h3>
-          <p>HTML, CSS, JS, React, Node</p>
-          <div class="progress-bar">
-            <div class="progress" style="width:0%">0%</div>
-          </div>
-          <button onclick="window.location.href='course-player.html?course=full-stack-dev'">Start Course</button>
-        </div>
+      <!-- COMPLETED COURSES -->
+      <section class="courses completed-courses">
+        <h2>Completed Courses</h2>
 
         <div class="course-card">
           <h3>Python for Beginners</h3>
@@ -88,7 +107,9 @@
           <div class="progress-bar">
             <div class="progress" style="width:100%">100%</div>
           </div>
-          <button onclick="window.location.href='certificates.html'">View Certificate</button>
+          <button onclick="window.location.href='certificates.html'">
+            View Certificate
+          </button>
         </div>
 
         <div class="course-card">
@@ -97,10 +118,37 @@
           <div class="progress-bar">
             <div class="progress" style="width:100%">100%</div>
           </div>
-          <button onclick="window.location.href='certificates.html'">View Certificate</button>
+          <button onclick="window.location.href='certificates.html'">
+            View Certificate
+          </button>
         </div>
-      </div>
+      </section>
+
+      <!-- POPULAR COURSES (UNCHANGED STRUCTURE) -->
+      <section class="courses">
+        <h2>Popular Courses</h2>
+
+        <div class="course-card">
+          <h3>Full Stack Development</h3>
+          <p>HTML, CSS, JS, React, Node</p>
+          <button onclick="window.location.href='mycourses.html'">View Course</button>
+        </div>
+
+        <div class="course-card">
+          <h3>UI/UX Design</h3>
+          <p>Figma, Design Thinking</p>
+          <button onclick="window.location.href='mycourses.html'">View Course</button>
+        </div>
+
+        <div class="course-card">
+          <h3>Machine Learning</h3>
+          <p>ML with Python</p>
+          <button onclick="window.location.href='mycourses.html'">View Course</button>
+        </div>
+      </section>
+
     </section>
+
   </main>
 
   <!-- JS -->
