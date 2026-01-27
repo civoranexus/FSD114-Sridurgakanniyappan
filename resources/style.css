@@ -101,6 +101,11 @@ body {
   background-color: #1B9AAA;
   color: #ffffff;
   margin-top: 15px;
+  text-align: center;
+}
+
+.card a{
+  text-decoration: none;
 }
 
 /* Responsive Layout */
@@ -138,3 +143,18 @@ footer {
   height: 80px;
   margin-bottom: 20px;
 }
+
+.heading {
+  text-align: center;
+}
+
+.main-content .cards-container .card .btn{
+  margin-top: 50px;
+}
+
+.main-content .cards-container .card .btn:hover{
+  background-color: #1B9AAA;
+  color: #ffffff;
+}
+
+

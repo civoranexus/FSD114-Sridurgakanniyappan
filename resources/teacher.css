@@ -1,0 +1,139 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+:root {
+  --primary: #1b9aaa;
+  --secondary: #147783;
+  --sidebar: #0f6e75;
+  --bg: #e9fbfd;
+  --white: #ffffff;
+  --text-dark: #0c4a50;
+}
+
+body {
+  background: var(--bg);
+}
+
+/* ================= HEADER ================= */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 70px;
+  width: 100%;
+  background: var(--primary);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  z-index: 1000;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-container img {
+  height: 42px;
+}
+
+.logo-container h1 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar {
+  position: fixed;
+  top: 70px;                 /* BELOW HEADER */
+  left: 0;
+  width: 240px;
+  height: calc(100vh - 70px);
+  background: var(--sidebar);
+  padding-top: 20px;
+}
+
+.sidebar nav a {
+  display: block;
+  padding: 14px 24px;
+  color: var(--white);
+  text-decoration: none;
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+  background: rgba(255, 255, 255, 0.15);
+  opacity: 1;
+}
+
+/* ================= MAIN CONTENT ================= */
+.main-content {
+  margin-top: 70px;
+  margin-left: 240px;
+  padding: 30px;
+  width: calc(100% - 240px);   /* ✅ IMPORTANT */
+}
+
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #0f8b9d, #0bbcd6);
+  color: white;
+  padding: 40px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* CARDS */
+.cards-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* ✅ HARD TWO COLUMNS */
+  gap: 25px;
+  width: 100%;
+}
+
+.card {
+  width: 100%;                 /* ✅ allow grid control */
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  text-align: center;
+  margin-top: 25px;
+}
+
+
+.card h3 {
+  color: #0f8b9d;
+  margin-bottom: 10px;
+}
+
+.card p {
+  margin-bottom: 15px;
+}
+
+/* BUTTON */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background: #0f8b9d;
+  color: white;
+  border-radius: 25px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #0bbcd6;
+}

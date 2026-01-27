@@ -1,0 +1,203 @@
+/* ================= ROOT VARIABLES ================= */
+:root {
+  --primary: #1b9aaa;
+  --secondary: #147783;
+  --sidebar: #0f6e75;
+  --bg: #e9fbfd;
+  --white: #ffffff;
+  --text-dark: #0c4a50;
+  --muted: #6b9ea3;
+}
+
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: var(--bg);
+}
+
+/* ================= HEADER ================= */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 70px;
+  width: 100%;
+  background: var(--primary);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  z-index: 1000;
+}
+
+/* Logo */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-container img {
+  height: 42px; /* Correct logo size */
+  width: auto;
+}
+
+.logo-container h1 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* Profile */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  width: 240px;
+  height: calc(100vh - 70px);
+  background: var(--sidebar);
+  padding: 20px 0;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar nav a {
+  color: var(--white);
+  text-decoration: none;
+  padding: 14px 24px;
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+  background: rgba(255, 255, 255, 0.15);
+  opacity: 1;
+}
+
+/* ================= MAIN CONTENT ================= */
+.main {
+  margin-left: 240px;
+  margin-top: 70px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+}
+
+/* Page Title */
+.main h2 {
+  width: 100%;
+  max-width: 900px;
+  color: var(--text-dark);
+  margin-bottom: 16px;
+}
+
+/* ================= SETTINGS CARD ================= */
+.settings-form {
+  background: var(--white);
+  width: 100%;
+  max-width: 900px;
+  padding: 24px 28px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Form groups */
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  width: 180px;
+  font-size: 14px;
+  color: var(--text-dark);
+}
+
+.form-group input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #cfeaed;
+  outline: none;
+  font-size: 14px;
+}
+
+/* Checkbox group */
+.checkbox-group {
+  gap: 24px;
+}
+
+.checkbox-group label {
+  width: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+/* Save button */
+.settings-form button {
+  margin-top: 10px;
+  background: var(--secondary);
+  color: var(--white);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.settings-form button:hover {
+  background: var(--primary);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .main {
+    margin-left: 0;
+  }
+
+  .sidebar {
+    left: -240px;
+    transition: 0.3s;
+  }
+
+  .sidebar.show {
+    left: 0;
+  }
+
+  .form-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .form-group label {
+    margin-bottom: 6px;
+    width: 100%;
+  }
+}
