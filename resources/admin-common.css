@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: #e9f7f9;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 230px;
+    height: 100vh;
+    background: #167c89;
+    color: #fff;
+    padding: 20px;
+}
+
+.sidebar .logo h2 {
+    margin-bottom: 4px;
+}
+
+.sidebar .logo small {
+    opacity: 0.8;
+}
+
+.sidebar nav {
+    margin-top: 40px;
+}
+
+.sidebar nav a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 15px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+    background: #1fa6b5;
+}
+
+/* ===== MAIN WRAPPER ===== */
+.main {
+    margin-left: 230px;
+}
+
+/* ===== TOP BAR ===== */
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 230px;
+    right: 0;
+    height: 70px;
+    background: #1c8f9e;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    color: #fff;
+    z-index: 100;
+}
+
+.logout-btn {
+    background: #e6fbff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+/* ===== PAGE CONTENT ===== */
+.main-content {
+    margin-top: 90px;
+    padding: 30px;
+}
+
+/* ===== PAGE CARD ===== */
+.page-card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.page-card h2 {
+    color: #167c89;
+    margin-bottom: 20px;
+}
+
+/* ===== TABLE ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+table th {
+    background: #f2fbfd;
+}
+
+/* ===== ACTION BUTTONS ===== */
+.btn {
+    padding: 6px 14px;
+    border-radius: 16px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-approve {
+    background: #1fa6b5;
+    color: #fff;
+}
+
+.btn-reject {
+    background: #e74c3c;
+    color: #fff;
+}
