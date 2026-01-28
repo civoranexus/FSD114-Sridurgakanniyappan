@@ -14,16 +14,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body class="dashboard-page">
 
     <!-- HEADER -->
     <header class="header">
         <button id="menuBtn" class="menu-btn">☰</button>
-
-        <div class="logo-container">
-            <img src="Long_logo.png" alt="Civora Nexus Logo">
-            <div>
-                <h1>EduVillage</h1>
+       <div class="logo-container" style="display: flex;">
+            <img src="Long_logo.png" alt="Civora Nexus Logo" class="image-logo">
+            <div style="margin-left: 1.1rem;">
+                <h1 style="font-size: 1.3rem;">EduVillage</h1>
                 <small style="font-size: 0.8rem; opacity: 0.9;">by Civora Nexus</small>
             </div>
         </div>
@@ -44,56 +43,67 @@
             <a href="certificates.html">Certificates</a>
             <a href="messages.html">Messages</a>
             <a href="settings.html">Settings</a>
-            <a href="login.html" id="logoutBtn">Logout</a>
+            <a href="login.html" id="logoutBtn" onclick="confirmLogout()">Logout</a>
         </nav>
     </aside>
 
-    <!-- MAIN CONTENT -->
-    <main id="mainContent" class="main">
-        <h2>Assignments</h2>
+ <!-- MAIN CONTENT -->
+<main id="mainContent" class="main">
 
-        <div class="list-container">
-            <!-- Assignment 1 -->
-            <div class="list-item">
-                <div class="item-details">
-                    <h3>Build a Portfolio Website</h3>
-                    <p>Course: Web Development Basics</p>
-                    <p>Due: 25th Jan 2026</p>
-                </div>
-                <div class="item-actions">
-                    <span class="status pending">Pending</span>
-                    <button onclick="alert('Upload functionality coming soon')">Submit</button>
-                </div>
-            </div>
+  <section class="assignments-page">
 
-            <!-- Assignment 2 -->
-            <div class="list-item">
-                <div class="item-details">
-                    <h3>React To-Do App</h3>
-                    <p>Course: React Fundamentals</p>
-                    <p>Due: 30th Jan 2026</p>
-                </div>
-                <div class="item-actions">
-                    <span class="status pending">Pending</span>
-                    <button onclick="alert('Upload functionality coming soon')">Submit</button>
-                </div>
-            </div>
+    <h2 class="page-title">Assignments</h2>
 
-            <!-- Assignment 3 -->
-            <div class="list-item">
-                <div class="item-details">
-                    <h3>Python Snake Game</h3>
-                    <p>Course: Python for Beginners</p>
-                    <p>Submitted on: 12th Jan 2026</p>
-                </div>
-                <div class="item-actions">
-                    <span class="status submitted">Submitted</span>
-                    <span class="status completed">Grade: 95/100</span>
-                </div>
-            </div>
+    <!-- Pending Assignments -->
+    <div class="assignment-section">
+      <h3>Pending Assignments</h3>
 
+      <div class="assignment-list">
+        <div class="assignment-card">
+          <h4>Build a Portfolio Website</h4>
+          <p><strong>Course:</strong> Web Development Basics</p>
+          <p><strong>Due:</strong> 25 Jan 2026</p>
+
+          <div class="assignment-footer">
+            <span class="badge pending">Pending</span>
+            <button class="btn">Submit</button>
+          </div>
         </div>
-    </main>
+
+        <div class="assignment-card">
+          <h4>React To-Do App</h4>
+          <p><strong>Course:</strong> React Fundamentals</p>
+          <p><strong>Due:</strong> 30 Jan 2026</p>
+
+          <div class="assignment-footer">
+            <span class="badge pending">Pending</span>
+            <button class="btn">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submitted Assignments -->
+    <div class="assignment-section">
+      <h3>Submitted Assignments</h3>
+
+      <div class="assignment-list">
+        <div class="assignment-card submitted">
+          <h4>Python Snake Game</h4>
+          <p><strong>Course:</strong> Python for Beginners</p>
+          <p><strong>Submitted:</strong> 12 Jan 2026</p>
+          <p><strong>Grade:</strong> 95 / 100</p>
+
+          <div class="assignment-footer">
+            <span class="badge submitted">Submitted</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</main>
 
     <script src="student-dashboard.js"></script>
 </body>

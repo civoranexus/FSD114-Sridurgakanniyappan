@@ -299,3 +299,110 @@ function loadPage(page) {
 window.addEventListener('DOMContentLoaded', () => {
   loadPage('dashboard'); // Now only runs if student is logged in
 });
+/* ================= BROWSE COURSES LOGIC ================= */
+const coursesData = [
+  {
+    id: "web-development-basics",
+    title: "Web Development Basics",
+    category: "Development",
+    level: "Beginner",
+    type: "Free",
+    desc: "HTML, CSS, JavaScript fundamentals",
+    duration: "6 Weeks"
+  },
+  {
+    id: "react-fundamentals",
+    title: "React Fundamentals",
+    category: "Development",
+    level: "Beginner",
+    type: "Free",
+    desc: "Components, Hooks, State",
+    duration: "4 Weeks"
+  },
+  {
+    id: "uiux-design",
+    title: "UI/UX Design",
+    category: "Design",
+    level: "Beginner",
+    type: "Paid",
+    desc: "Figma, Design Thinking",
+    duration: "3 Weeks"
+  }
+];
+
+
+const browseGrid = document.getElementById("browseCoursesGrid");
+const searchInput = document.getElementById("courseSearchInput");
+const filterCategory = document.getElementById("filterCategory");
+const filterLevel = document.getElementById("filterLevel");
+const filterType = document.getElementById("filterType");
+const resetBtn = document.getElementById("resetFiltersBtn");
+
+function scrollToBrowse() {
+  document
+    .getElementById("browseCoursesSection")
+    .scrollIntoView({ behavior: "smooth" });
+}
+
+function renderBrowseCourses() {
+  const search = searchInput.value.toLowerCase();
+
+  browseGrid.innerHTML = "";
+
+  coursesData
+    .filter(c =>
+      (search === "" || c.title.toLowerCase().includes(search)) &&
+      (filterCategory.value === "all" || c.category === filterCategory.value) &&
+      (filterLevel.value === "all" || c.level === filterLevel.value) &&
+      (filterType.value === "all" || c.type === filterType.value)
+    )
+    .forEach(course => {
+    browseGrid.innerHTML += `
+  <div class="course-card">
+    <h3>${course.title}</h3>
+    <p>${course.desc}</p>
+    <p style="font-size:13px;color:var(--muted)">
+      ${course.level} • ${course.duration}
+    </p>
+    <button onclick="enrollNow('${course.id}')">Enroll Now</button>
+  </div>
+`;
+    });
+}
+
+/* Events */
+searchInput.addEventListener("input", () => {
+  renderBrowseCourses();
+  scrollToBrowse();
+});
+
+filterCategory.addEventListener("change", () => {
+  renderBrowseCourses();
+  scrollToBrowse();
+});
+
+filterLevel.addEventListener("change", () => {
+  renderBrowseCourses();
+  scrollToBrowse();
+});
+
+filterType.addEventListener("change", () => {
+  renderBrowseCourses();
+  scrollToBrowse();
+});
+
+resetBtn.addEventListener("click", () => {
+  searchInput.value = "";
+  filterCategory.value = "all";
+  filterLevel.value = "all";
+  filterType.value = "all";
+  renderBrowseCourses();
+  scrollToBrowse();
+});
+
+/* Init */
+renderBrowseCourses();
+function enrollNow(courseId) {
+  window.location.href = `course-details.html?course=${courseId}`;
+}
+

@@ -86,7 +86,7 @@ body {
 }
 
 .card p {
-  margin-bottom: 15px;
+  margin-bottom: 18px;
   font-size: 1rem;
   color: #0C4A50;
 }
@@ -128,15 +128,15 @@ footer {
   color: #E0F7FA;
 }
 
-/* Course Card */
-/* Course Card - Handled by dashboard.css mainly */
-.course-card {
+/* Course Card – ONLY for landing / public pages */
+.landing-page .course-card {
   background: #ffffff;
   padding: 15px;
   margin: 15px;
   border-radius: 8px;
   box-shadow: 0 0 6px #ccc;
 }
+
 
 /* Logo */
 .site-logo {
@@ -157,4 +157,19 @@ footer {
   color: #ffffff;
 }
 
+.logout-btn {
+  margin-top: 20px;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 25px;
+  background-color: #fff; /* matches your theme */
+  color: #000;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.logout-btn:hover {
+  background-color: #0c7c88;
+}
 

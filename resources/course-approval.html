@@ -2,15 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Create Course | EduVillage</title>
+  <title>Course Approval | EduVillage</title>
   <link rel="stylesheet" href="teacher.css">
 </head>
 <body>
 
 <div class="layout">
 
-   <header class="header">
-
+  <header class="header">
     <div class="logo-container">
       <img src="./Long_logo.png" alt="Civora Nexus Logo">
       <div>
@@ -18,38 +17,38 @@
         <small style="font-size: 0.8rem; opacity: 0.9;">by Civora Nexus</small>
       </div>
     </div>
-
   </header>
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <nav>
-      <a class="active" href="./teacher-dashboard.html">Dashboard</a>
-      <a href="create-course.html">Create Course</a>
-      <a href="studentprogress.html">Student Progress</a>
-      <a href="courses.html">My Courses</a>
-      <a href="settings.html">Settings</a>
+      <a href="./admin-dashboard.html">Dashboard</a>
+      <a href="user-management.html">User Management</a>
+      <a class="active" href="course-approval.html">Course Approval</a>
+      <a href="reports.html">Reports</a>
       <a href="#" id="logoutBtn" onclick="confirmLogout()">Logout</a>
     </nav>
   </aside>
 
+  <!-- MAIN CONTENT (ONLY THIS CHANGED) -->
   <main class="main-content">
-    <h2>Create Course</h2>
+    <h2>Course Approval</h2>
 
     <div class="card-grid">
       <div class="card">
-        <h3>Course Details</h3>
-        <p>Add title, description, and category.</p>
+        <h3>Pending Courses</h3>
+        <p>Review newly submitted courses.</p>
+        <p><strong>Pending:</strong> 12</p>
       </div>
 
       <div class="card">
-        <h3>Add Lessons</h3>
-        <p>Upload videos, PDFs, and notes.</p>
+        <h3>Approve Courses</h3>
+        <p>Approve courses that meet platform standards.</p>
       </div>
 
       <div class="card">
-        <h3>Create Quiz</h3>
-        <p>Add MCQs and assessments.</p>
+        <h3>Reject Courses</h3>
+        <p>Reject or request changes from instructors.</p>
       </div>
     </div>
   </main>

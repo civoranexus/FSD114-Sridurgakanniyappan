@@ -6,22 +6,27 @@
   <link rel="stylesheet" href="style.css">
 
 </head>
-<body>
+<body class="dashboard-page">
 
 <div class="layout">
 
   <header class="hero">
 
-    <!-- Logo -->
-    <img src="Long_logo.png" alt="EduVillage Logo" class="site-logo">
+  <!-- Logo -->
+  <img src="Long_logo.png" alt="EduVillage Logo" class="site-logo">
 
-    <h1>Welcome to EduVillage</h1>
-  </header>
+  <h1>Teacher Dashboard</h1>
+  <p>Platform control and monitoring</p>
+
+  <button class="logout-btn" id="logoutBtn" onclick="confirmLogout()">Logout</button>
+ 
+</header>
+
 
   <!-- MAIN -->
   <main class="main-content">
     <div class="heading">
-      <h1>Teacher Dashboard</h1>
+      
 
     </div>
 
@@ -43,7 +48,7 @@
       <div class="card">
         <h3>My Courses</h3>
         <p>Edit or update your courses.</p>
-        <a href="my-courses.html" class="btn">Manage</a>
+        <a href="courses.html" class="btn">Manage</a>
       </div>
 
     </section>
@@ -51,6 +56,6 @@
   </main>
 </div>
 
-<script src="js/logout.js"></script>
+<script src="./logout.js"></script>
 </body>
 </html>
