@@ -32,7 +32,7 @@ function setToggle(index) {
 }
 
 // Submit handler
-function handleSubmit() {
+async function handleSubmit() {
   clearErrors();
 
   const email = document.getElementById("email").value.trim();
@@ -64,19 +64,37 @@ function handleSubmit() {
 
   if (!valid) return;
 
-  if (isRegister) {
-    alert(role.toUpperCase() + " registered successfully!");
-  } else {
-    alert(role.toUpperCase() + " login successful!");
+  const url = isRegister
+    ? "http://127.0.0.1:8000/api/auth/register/"
+    : "http://127.0.0.1:8000/api/auth/login/";
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      email,
+      password,
+      role
+    })
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    alert(data.message || "Something went wrong");
+    return;
   }
 
-  // Save Session & Redirect
-  localStorage.setItem("isLoggedIn", "true");
-  localStorage.setItem("userRole", role);
+  alert(data.message);
 
-  if (role === "student") window.location.href = "student-dashboard.html";
-  if (role === "teacher") window.location.href = "teacher-dashboard.html";
-  if (role === "admin") window.location.href = "admin-dashboard.html";
+  localStorage.setItem("isLoggedIn", "true");
+  localStorage.setItem("userRole", data.role);
+
+  if (data.role === "student") window.location.href = "student-dashboard.html";
+  if (data.role === "teacher") window.location.href = "teacher-dashboard.html";
+  if (data.role === "admin") window.location.href = "admin-dashboard.html";
 }
 
 // Helpers
