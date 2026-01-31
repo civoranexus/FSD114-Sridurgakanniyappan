@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+sqlalchemy
+pydantic>=2.0
+pydantic-settings
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart
+# Database drivers (uncomment as needed)
+# psycopg2-binary
+# pymysql
