@@ -2,14 +2,14 @@ let isRegister = false;
 let role = "student";
 
 // Role selection
-function selectRole(selectedRole) {
+function selectRole(selectedRole, el) {
   role = selectedRole;
 
   document.querySelectorAll(".category-btn").forEach(btn => {
     btn.classList.remove("active");
   });
 
-  event.target.classList.add("active");
+  el.classList.add("active");
 }
 
 // Toggle functions
@@ -31,7 +31,7 @@ function setToggle(index) {
   });
 }
 
-// Submit handler
+// ✅ SUBMIT HANDLER
 async function handleSubmit() {
   clearErrors();
 
@@ -89,15 +89,26 @@ async function handleSubmit() {
 
   alert(data.message);
 
+  // 🔥 REGISTER → STOP
+  if (isRegister) {
+    showLogin();
+    return;
+  }
+
+  // 🔥 LOGIN → REDIRECT
   localStorage.setItem("isLoggedIn", "true");
   localStorage.setItem("userRole", data.role);
 
-  if (data.role === "student") window.location.href = "student-dashboard.html";
-  if (data.role === "teacher") window.location.href = "teacher-dashboard.html";
-  if (data.role === "admin") window.location.href = "admin-dashboard.html";
+  if (data.role === "student") {
+    window.location.href = "student-dashboard.html";
+  } else if (data.role === "teacher") {
+    window.location.href = "teacher-dashboard.html";
+  } else if (data.role === "admin") {
+    window.location.href = "admin-dashboard.html";
+  }
 }
 
-// Helpers
+// ✅ HELPERS (OUTSIDE)
 function showError(id, msg) {
   document.getElementById(id).innerText = msg;
 }
@@ -105,5 +116,3 @@ function showError(id, msg) {
 function clearErrors() {
   document.querySelectorAll(".error").forEach(e => (e.innerText = ""));
 }
-
-
