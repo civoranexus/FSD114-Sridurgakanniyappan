@@ -1,6 +1,6 @@
 from sqlalchemy import Column, ForeignKey, Integer, String, Text, DateTime, Float
 from sqlalchemy.orm import relationship
-from app.db.base import Base
+from app.db.session import Base
 
 class Assignment(Base):
     __tablename__ = "assignments"

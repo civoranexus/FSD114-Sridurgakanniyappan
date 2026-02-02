@@ -1,60 +1,51 @@
 from typing import Any, List
-from fastapi import APIRouter, Body, Depends, HTTPException
-from fastapi.encoders import jsonable_encoder
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from app.api import deps
+from app.core import security
 from app.models.user import User
-from app.schemas.user import UserCreate, UserResponse, UserUpdate
+from app.schemas.user import UserCreate, UserResponse
 
 router = APIRouter()
+
 
 @router.get("/", response_model=List[UserResponse])
 def read_users(
     db: Session = Depends(deps.get_db),
-    skip: int = 0,
-    limit: int = 100,
     current_user: User = Depends(deps.get_current_active_admin),
 ) -> Any:
-    """
-    Retrieve users. Only for Admins.
-    """
-    users = db.query(User).offset(skip).limit(limit).all()
-    return users
+    return db.query(User).all()
+
 
 @router.post("/", response_model=UserResponse)
 def create_user(
-    *,
-    db: Session = Depends(deps.get_db),
     user_in: UserCreate,
+    db: Session = Depends(deps.get_db),
     current_user: User = Depends(deps.get_current_active_admin),
 ) -> Any:
-    """
-    Create new user. Only for Admins.
-    """
+
     user = db.query(User).filter(User.email == user_in.email).first()
     if user:
-        raise HTTPException(
-            status_code=400,
-            detail="The user with this username already exists in the system.",
-        )
-    user = User(
+        raise HTTPException(status_code=400, detail="User already exists")
+
+    new_user = User(
         email=user_in.email,
-        hashed_password=deps.security.get_password_hash(user_in.password),
+        hashed_password=security.get_password_hash(user_in.password),
         full_name=user_in.full_name,
         role=user_in.role,
         is_active=True,
     )
-    db.add(user)
+
+    db.add(new_user)
     db.commit()
-    db.refresh(user)
-    return user
+    db.refresh(new_user)
+
+    return new_user
+
 
 @router.get("/me", response_model=UserResponse)
 def read_user_me(
     current_user: User = Depends(deps.get_current_active_user),
 ) -> Any:
-    """
-    Get current user.
-    """
     return current_user
