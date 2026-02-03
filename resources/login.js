@@ -30,8 +30,6 @@ function setToggle(index) {
     btn.classList.toggle("active", i === index);
   });
 }
-
-// ✅ SUBMIT HANDLER
 async function handleSubmit() {
   clearErrors();
 
@@ -64,48 +62,62 @@ async function handleSubmit() {
 
   if (!valid) return;
 
-  const url = isRegister
-    ? "http://127.0.0.1:8000/api/auth/register/"
-    : "http://127.0.0.1:8000/api/auth/login/";
-
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      email,
-      password,
-      role
-    })
-  });
-
-  const data = await response.json();
-
-  if (!response.ok) {
-    alert(data.message || "Something went wrong");
-    return;
-  }
-
-  alert(data.message);
-
-  // 🔥 REGISTER → STOP
+  // ✅ REGISTER (JSON)
   if (isRegister) {
+    const res = await fetch("http://127.0.0.1:8000/api/auth/register/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password, role })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.detail || "Registration failed");
+      return;
+    }
+
+    alert("Registered successfully. Please login.");
     showLogin();
     return;
   }
 
-  // 🔥 LOGIN → REDIRECT
-  localStorage.setItem("isLoggedIn", "true");
-  localStorage.setItem("userRole", data.role);
+  // ✅ LOGIN (FORM DATA for FastAPI)
+  const formData = new URLSearchParams();
+  formData.append("username", email);
+  formData.append("password", password);
 
-  if (data.role === "student") {
-    window.location.href = "student-dashboard.html";
-  } else if (data.role === "teacher") {
-    window.location.href = "teacher-dashboard.html";
-  } else if (data.role === "admin") {
-    window.location.href = "admin-dashboard.html";
+  const loginRes = await fetch("http://127.0.0.1:8000/api/auth/login/", {
+    method: "POST",
+    body: formData
+  });
+
+  const loginData = await loginRes.json();
+
+  if (!loginRes.ok) {
+    alert("Invalid credentials");
+    return;
   }
+
+  // Save token
+  localStorage.setItem("token", loginData.access_token);
+
+  // ✅ Get user role from /me
+  const meRes = await fetch("http://127.0.0.1:8000/api/auth/me/", {
+    headers: {
+      Authorization: "Bearer " + loginData.access_token
+    }
+  });
+
+  const user = await meRes.json();
+
+  // Redirect based on role
+  if (user.role === "student")
+    window.location.href = "student-dashboard.html";
+  else if (user.role === "teacher")
+    window.location.href = "teacher-dashboard.html";
+  else
+    window.location.href = "admin-dashboard.html";
 }
 
 // ✅ HELPERS (OUTSIDE)
