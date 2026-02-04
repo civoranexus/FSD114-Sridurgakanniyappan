@@ -18,21 +18,29 @@ navLinks.forEach(link => {
   });
 });
 
-// ===== AUTH CHECK =====
-const isLoggedIn = localStorage.getItem("isLoggedIn");
-const role = localStorage.getItem("userRole");
+// ===== AUTH CHECK (REAL INTEGRATION) =====
+const token = localStorage.getItem("token");
+const role = localStorage.getItem("role");
 
-if (isLoggedIn !== "true" || role !== "student") {
-  window.location.href = "login.html"; // Redirect if not logged in as student
+// If no token → go to login
+if (!token) {
+  window.location.href = "resources/login.html";
+}
+
+// If this is STUDENT dashboard, ensure role matches
+if (role !== "student") {
+  window.location.href = "resources/login.html";
 }
 
 // ===== LOGOUT =====
 if (logoutBtn) {
   logoutBtn.addEventListener("click", () => {
-    localStorage.clear(); // clears login & progress
-    window.location.href = "login.html";
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    window.location.href = "resources/login.html";
   });
 }
+
 
 // ===== HELPER FUNCTIONS =====
 function getProgressBar(percent) {

@@ -12,7 +12,7 @@
 
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-</head> 
+</head>
 
 <body>
 
@@ -71,76 +71,73 @@
       </section>
 
       <!-- ===== BROWSE COURSES SECTION ===== -->
-       <section class="browse-section" id="browseCoursesSection"> <div class="section-header">
-    <div>
-      <h2 class="section-title">Browse Courses</h2>
-      <p class="section-subtitle">Explore courses and enroll to start learning</p>
-    </div>
+      <section class="browse-section" id="browseCoursesSection">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Browse Courses</h2>
+            <p class="section-subtitle">Explore courses and enroll to start learning</p>
+          </div>
 
-    <div class="search-wrap">
-      <input
-        type="text"
-        id="courseSearchInput"
-        placeholder="Search courses (HTML, Python, UI/UX)"
-      />
-    </div>
-  </div>
+          <div class="search-wrap">
+            <input type="text" id="courseSearchInput" placeholder="Search courses (HTML, Python, UI/UX)" />
+          </div>
+        </div>
 
-  <!-- Filters -->
-  <div class="filters-grid">
-    <select id="filterCategory">
-      <option value="all">All Categories</option>
-      <option value="Development">Development</option>
-      <option value="Design">Design</option>
-      <option value="Data">Data</option>
-      <option value="Business">Business</option>
-    </select>
+        <!-- Filters -->
+        <div class="filters-grid">
+          <select id="filterCategory">
+            <option value="all">All Categories</option>
+            <option value="Development">Development</option>
+            <option value="Design">Design</option>
+            <option value="Data">Data</option>
+            <option value="Business">Business</option>
+          </select>
 
-    <select id="filterLevel">
-      <option value="all">All Levels</option>
-      <option value="Beginner">Beginner</option>
-      <option value="Intermediate">Intermediate</option>
-      <option value="Advanced">Advanced</option>
-    </select>
+          <select id="filterLevel">
+            <option value="all">All Levels</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+          </select>
 
-    <select id="filterType">
-      <option value="all">Free + Paid</option>
-      <option value="Free">Free</option>
-      <option value="Paid">Paid</option>
-    </select>
+          <select id="filterType">
+            <option value="all">Free + Paid</option>
+            <option value="Free">Free</option>
+            <option value="Paid">Paid</option>
+          </select>
 
-    <button class="btn btn-outline" id="resetFiltersBtn">
-      Reset
-    </button>
-  </div>
+          <button class="btn btn-outline" id="resetFiltersBtn">
+            Reset
+          </button>
+        </div>
 
-  <!-- Courses -->
-  <div class="courses-grid" id="browseCoursesGrid"></div>
-</section>
+        <!-- Courses -->
+        <div class="courses-grid" id="browseCoursesGrid"></div>
+      </section>
 
-<!-- ===== COURSE PREVIEW MODAL ===== -->
-<div class="modal-overlay" id="courseModalOverlay">
-  <div class="modal-card">
+      <!-- ===== COURSE PREVIEW MODAL ===== -->
+      <div class="modal-overlay" id="courseModalOverlay">
+        <div class="modal-card">
 
-    <div class="modal-top">
-      <h3 id="modalTitle"></h3>
-      <button class="modal-close" id="modalCloseBtn">✕</button>
-    </div>
+          <div class="modal-top">
+            <h3 id="modalTitle"></h3>
+            <button class="modal-close" id="modalCloseBtn">✕</button>
+          </div>
 
-    <div class="modal-body">
-      <p class="muted" id="modalMeta"></p>
-      <p id="modalDesc"></p>
+          <div class="modal-body">
+            <p class="muted" id="modalMeta"></p>
+            <p id="modalDesc"></p>
 
-      <div class="modal-tags" id="modalTags"></div>
+            <div class="modal-tags" id="modalTags"></div>
 
-      <div class="modal-actions">
-        <button class="btn" id="modalEnrollBtn">Enroll Now</button>
-        <button class="btn btn-outline" id="modalCancelBtn">Cancel</button>
+            <div class="modal-actions">
+              <button class="btn" id="modalEnrollBtn">Enroll Now</button>
+              <button class="btn btn-outline" id="modalCancelBtn">Cancel</button>
+            </div>
+          </div>
+
+        </div>
       </div>
-    </div>
-
-  </div>
-</div>
 
 
       <!-- IN-PROGRESS COURSES -->
@@ -148,33 +145,33 @@
         <h2>My Courses</h2>
         <div class="course-grid">
           <div class="course-card">
-          <h3>Web Development Basics</h3>
-          <p>HTML, CSS, JavaScript fundamentals</p>
-          <div class="progress-bar">
-            <div class="progress" style="width:70%">70%</div>
+            <h3>Web Development Basics</h3>
+            <p>HTML, CSS, JavaScript fundamentals</p>
+            <div class="progress-bar">
+              <div class="progress" style="width:70%">70%</div>
+            </div>
+            <button onclick="window.location.href='course-player.html?course=web-development-basics'">
+              Continue Learning
+            </button>
           </div>
-          <button onclick="window.location.href='course-player.html?course=web-development-basics'">
-            Continue Learning
-          </button>
-        </div>
 
-        <div class="course-card">
-          <h3>React Fundamentals</h3>
-          <p>Components, Hooks, State</p>
-          <div class="progress-bar">
-            <div class="progress" style="width:40%">40%</div>
+          <div class="course-card">
+            <h3>React Fundamentals</h3>
+            <p>Components, Hooks, State</p>
+            <div class="progress-bar">
+              <div class="progress" style="width:40%">40%</div>
+            </div>
+            <button onclick="window.location.href='course-player.html?course=react-fundamentals'">
+              Continue Learning
+            </button>
           </div>
-          <button onclick="window.location.href='course-player.html?course=react-fundamentals'">
-            Continue Learning
-          </button>
-        </div>
       </section>
 
       <!-- COMPLETED COURSES -->
       <section class="courses completed-courses">
         <h2>Completed Courses</h2>
         <div class="course-grid"></div>
-          <div class="course-card">
+        <div class="course-card">
           <h3>Python for Beginners</h3>
           <p>Variables, Loops, OOP</p>
           <div class="progress-bar">
@@ -226,7 +223,24 @@
 
   <!-- JS -->
   <script src="student-dashboard.js"></script>
+  <script>
+    (async function () {
+      const token = localStorage.getItem("token");
+      if (!token) return window.location.href = "login.html";
 
+      try {
+        const res = await fetch("http://127.0.0.1:8000/api/users/me", {
+          headers: { "Authorization": `Bearer ${token}` }
+        });
+        if (!res.ok) throw new Error("Unauthorized");
+        const user = await res.json();
+        if (user.role !== "student") window.location.href = "login.html";
+      } catch (e) {
+        localStorage.clear();
+        window.location.href = "login.html";
+      }
+    })();
+  </script>
 </body>
 
 </html>

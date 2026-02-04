@@ -1,18 +1,18 @@
+const API_BASE = "http://127.0.0.1:8000/api";
+
 let isRegister = false;
 let role = "student";
 
-// Role selection
+// ---------------- ROLE UI ----------------
 function selectRole(selectedRole, el) {
   role = selectedRole;
-
-  document.querySelectorAll(".category-btn").forEach(btn => {
-    btn.classList.remove("active");
-  });
-
+  document.querySelectorAll(".category-btn").forEach(btn =>
+    btn.classList.remove("active")
+  );
   el.classList.add("active");
 }
 
-// Toggle functions
+// ---------------- TOGGLE ----------------
 function showLogin() {
   isRegister = false;
   document.getElementById("confirmBox").style.display = "none";
@@ -30,6 +30,17 @@ function setToggle(index) {
     btn.classList.toggle("active", i === index);
   });
 }
+
+// ---------------- HELPERS ----------------
+function showError(id, msg) {
+  document.getElementById(id).innerText = msg;
+}
+
+function clearErrors() {
+  document.querySelectorAll(".error").forEach(e => (e.innerText = ""));
+}
+
+// ---------------- MAIN ----------------
 async function handleSubmit() {
   clearErrors();
 
@@ -37,94 +48,79 @@ async function handleSubmit() {
   const password = document.getElementById("password").value;
   const confirm = document.getElementById("confirmPassword")?.value;
 
-  let valid = true;
-
   if (!email.includes("@")) {
     showError("emailError", "Enter a valid email");
-    valid = false;
+    return;
   }
 
-  const strongPwd =
-    /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
-
-  if (!strongPwd.test(password)) {
-    showError(
-      "passwordError",
-      "Password must be 8+ chars with uppercase, lowercase, number & symbol"
-    );
-    valid = false;
+  if (password.length < 1) {
+    showError("passwordError", "Password required");
+    return;
   }
 
-  if (isRegister && password !== confirm) {
-    showError("confirmError", "Passwords do not match");
-    valid = false;
-  }
+  try {
+    // ---------- REGISTER ----------
+    if (isRegister) {
+      if (password !== confirm) {
+        showError("confirmError", "Passwords do not match");
+        return;
+      }
 
-  if (!valid) return;
+      const res = await fetch(`${API_BASE}/auth/register/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password, role }),
+      });
 
-  // ✅ REGISTER (JSON)
-  if (isRegister) {
-    const res = await fetch("http://127.0.0.1:8000/api/auth/register/", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password, role })
-    });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || "Registration failed");
 
-    const data = await res.json();
-
-    if (!res.ok) {
-      alert(data.detail || "Registration failed");
+      alert("Registration successful! Please login.");
+      showLogin();
       return;
     }
 
-    alert("Registered successfully. Please login.");
-    showLogin();
-    return;
+    // ---------- LOGIN ----------
+    const params = new URLSearchParams();
+    params.append("username", email);
+    params.append("password", password);
+
+    const loginRes = await fetch(`${API_BASE}/auth/login/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: params,
+    });
+
+    const loginData = await loginRes.json();
+    if (!loginRes.ok) throw new Error(loginData.detail || "Login failed");
+
+    // Save token
+    localStorage.setItem("token", loginData.access_token);
+
+    // ---------- GET USER ROLE FROM BACKEND ----------
+    const meRes = await fetch(`${API_BASE}/auth/me/`, {
+      headers: {
+        Authorization: "Bearer " + loginData.access_token,
+      },
+    });
+
+    const user = await meRes.json();
+    if (!meRes.ok) throw new Error("Failed to fetch user info");
+
+    const userRole = user.role;
+    localStorage.setItem("role", userRole);
+
+    // ---------- REDIRECT ----------
+    if (userRole === "student")
+      window.location.href = "../student-dashboard.html";
+    else if (userRole === "teacher")
+      window.location.href = "../teacher-dashboard.html";
+    else if (userRole === "admin")
+      window.location.href = "../admin-dashboard.html";
+    else alert("Unknown role: " + userRole);
+
+  } catch (err) {
+    alert(err.message);
+    console.error(err);
   }
-
-  // ✅ LOGIN (FORM DATA for FastAPI)
-  const formData = new URLSearchParams();
-  formData.append("username", email);
-  formData.append("password", password);
-
-  const loginRes = await fetch("http://127.0.0.1:8000/api/auth/login/", {
-    method: "POST",
-    body: formData
-  });
-
-  const loginData = await loginRes.json();
-
-  if (!loginRes.ok) {
-    alert("Invalid credentials");
-    return;
-  }
-
-  // Save token
-  localStorage.setItem("token", loginData.access_token);
-
-  // ✅ Get user role from /me
-  const meRes = await fetch("http://127.0.0.1:8000/api/auth/me/", {
-    headers: {
-      Authorization: "Bearer " + loginData.access_token
-    }
-  });
-
-  const user = await meRes.json();
-
-  // Redirect based on role
-  if (user.role === "student")
-    window.location.href = "student-dashboard.html";
-  else if (user.role === "teacher")
-    window.location.href = "teacher-dashboard.html";
-  else
-    window.location.href = "admin-dashboard.html";
-}
-
-// ✅ HELPERS (OUTSIDE)
-function showError(id, msg) {
-  document.getElementById(id).innerText = msg;
-}
-
-function clearErrors() {
-  document.querySelectorAll(".error").forEach(e => (e.innerText = ""));
 }

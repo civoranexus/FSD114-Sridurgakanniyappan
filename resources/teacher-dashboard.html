@@ -1,61 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Teacher Dashboard | EduVillage</title>
   <link rel="stylesheet" href="style.css">
 
 </head>
+
 <body class="dashboard-page">
 
-<div class="layout">
+  <div class="layout">
 
-  <header class="hero">
+    <header class="hero">
 
-  <!-- Logo -->
-  <img src="Long_logo.png" alt="EduVillage Logo" class="site-logo">
+      <!-- Logo -->
+      <img src="Long_logo.png" alt="EduVillage Logo" class="site-logo">
 
-  <h1>Teacher Dashboard</h1>
-  <p>Platform control and monitoring</p>
+      <h1>Teacher Dashboard</h1>
+      <p>Platform control and monitoring</p>
 
-  <button class="logout-btn" id="logoutBtn" onclick="confirmLogout()">Logout</button>
- 
-</header>
+      <button class="logout-btn" id="logoutBtn" onclick="confirmLogout()">Logout</button>
 
-
-  <!-- MAIN -->
-  <main class="main-content">
-    <div class="heading">
-      
-
-    </div>
+    </header>
 
 
-    <section class="cards-container">
+    <!-- MAIN -->
+    <main class="main-content">
+      <div class="heading">
 
-      <div class="card">
-        <h3>Create Course</h3>
-        <p>Add new lessons, videos, and quizzes.</p>
-        <a href="create-course.html" class="btn">Create</a>
+
       </div>
 
-      <div class="card">
-        <h3>Student Progress</h3>
-        <p>Monitor student performance.</p>
-        <a href="studentprogress.html" class="btn">View Progress</a>
-      </div>
 
-      <div class="card">
-        <h3>My Courses</h3>
-        <p>Edit or update your courses.</p>
-        <a href="courses.html" class="btn">Manage</a>
-      </div>
+      <section class="cards-container">
 
-    </section>
+        <div class="card">
+          <h3>Create Course</h3>
+          <p>Add new lessons, videos, and quizzes.</p>
+          <a href="create-course.html" class="btn">Create</a>
+        </div>
 
-  </main>
-</div>
+        <div class="card">
+          <h3>Student Progress</h3>
+          <p>Monitor student performance.</p>
+          <a href="studentprogress.html" class="btn">View Progress</a>
+        </div>
 
-<script src="./logout.js"></script>
+        <div class="card">
+          <h3>My Courses</h3>
+          <p>Edit or update your courses.</p>
+          <a href="courses.html" class="btn">Manage</a>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+  <script src="./logout.js"></script>
+<script>
+(async function () {
+  const token = localStorage.getItem("token");
+  if (!token) return window.location.href = "login.html";
+
+  try {
+    const res = await fetch("http://127.0.0.1:8000/api/auth/me/", {
+      headers: { Authorization: "Bearer " + token }
+    });
+
+    if (!res.ok) throw new Error("Unauthorized");
+
+    const user = await res.json();
+
+    if (user.role !== "teacher") {
+      localStorage.clear();
+      window.location.href = "login.html";
+    }
+
+  } catch (e) {
+    localStorage.clear();
+    window.location.href = "login.html";
+  }
+})();
+</script>
+
 </body>
+
 </html>

@@ -1,65 +1,49 @@
-from fastapi import APIRouter, Depends, HTTPException, Form
+from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
-from datetime import timedelta
-from typing import Any
 
 from app.api import deps
-from app.core import security
-from app.core.config import settings
+from app.core.security import create_access_token, verify_password
 from app.models.user import User
-from app.schemas.user import UserCreate, UserResponse
 
 router = APIRouter()
 
 
-@router.post("/login")
+@router.post("/login/")
 def login_access_token(
+    form_data: OAuth2PasswordRequestForm = Depends(),
     db: Session = Depends(deps.get_db),
-    form_data: OAuth2PasswordRequestForm = Depends()
-) -> Any:
+):
     user = db.query(User).filter(User.email == form_data.username).first()
 
-    if not user or not security.verify_password(form_data.password, user.hashed_password):
+    if not user or not verify_password(form_data.password, user.hashed_password):
         raise HTTPException(status_code=400, detail="Incorrect email or password")
 
-    if not user.is_active:
-        raise HTTPException(status_code=400, detail="Inactive user")
-
-    access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
-    access_token = security.create_access_token(
-        subject=user.email, expires_delta=access_token_expires
-    )
+    access_token = create_access_token(subject=str(user.id))
 
     return {
         "access_token": access_token,
         "token_type": "bearer",
+        "user": {
+            "id": user.id,
+            "email": user.email,
+            "role": user.role
+        }
     }
-@router.post("/register", response_model=UserResponse)
-def register_user(
-    user_in: UserCreate,
-    db: Session = Depends(deps.get_db),
-) -> Any:
-    user = db.query(User).filter(User.email == user_in.email).first()
-    if user:
-        raise HTTPException(status_code=400, detail="User already exists")
 
-    new_user = User(
-        email=user_in.email,
-        hashed_password=security.get_password_hash(user_in.password),
-        full_name=user_in.full_name,
-        role=user_in.role,
-        is_active=True,
-    )
 
-    db.add(new_user)
-    db.commit()
-    db.refresh(new_user)
+# ✅ ADD THIS BELOW (outside the login function)
 
-    return new_user
+from fastapi import Depends
+from app.api import deps
 
-@router.get("/me", response_model=UserResponse)
-def read_user_me(
-    current_user: User = Depends(deps.get_current_active_user),
-) -> Any:
-    return current_user    
+@router.get("/me/")
+def get_current_user(
+    current_user: User = Depends(deps.get_current_user),
+):
+    return {
+        "id": current_user.id,
+        "email": current_user.email,
+        "role": current_user.role,
+    }
+

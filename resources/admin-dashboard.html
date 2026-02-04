@@ -11,15 +11,15 @@
 
     <header class="hero">
 
-    <!-- Logo -->
-    <img src="Long_logo.png" alt="EduVillage Logo" class="site-logo">
+        <!-- Logo -->
+        <img src="Long_logo.png" alt="EduVillage Logo" class="site-logo">
 
-    <h1>Admin Dashboard</h1>
-    <p>Platform control and monitoring</p>
+        <h1>Admin Dashboard</h1>
+        <p>Platform control and monitoring</p>
 
-    <button class="btn logout-btn" id="logoutBtn" onclick="logout()">Logout</button>
+        <button class="btn logout-btn" id="logoutBtn" onclick="logout()">Logout</button>
 
-</header>
+    </header>
 
 
     <main class="cards-container">
@@ -43,11 +43,35 @@
         </section>
 
     </main>
-</main>
+    </main>
 
-<script src="./api.js"></script>
-<script src="./admin-dashboard.js"></script>
-<script src="./logout.js"></script>
+    <script src="./api.js"></script>
+    <script src="./logout.js"></script>
+    <script>
+(async function () {
+  const token = localStorage.getItem("token");
+  if (!token) return window.location.href = "login.html";
+
+  try {
+    const res = await fetch("http://127.0.0.1:8000/api/auth/me/", {
+      headers: { Authorization: "Bearer " + token }
+    });
+
+    if (!res.ok) throw new Error("Unauthorized");
+
+    const user = await res.json();
+
+    if (user.role !== "Admin") {
+      localStorage.clear();
+      window.location.href = "login.html";
+    }
+
+  } catch (e) {
+    localStorage.clear();
+    window.location.href = "login.html";
+  }
+})();
+</script>
 
 </body>
 
