@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduVillage | Login</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="login-header">
+    <img src="Long_logo.png" alt="EduVillage Logo" class="logo">
+    <h1>EduVillage Login</h1>
+    <p>Select your login category</p>
+  </header>
+
+  <!-- Login / Register Section -->
+  <main class="login-container">
+
+    <!-- Category Selection -->
+    <div class="category-select">
+      <button class="category-btn active" onclick="selectRole('student', this)">Student</button>
+      <button class="category-btn" onclick="selectRole('teacher', this)">Teacher</button>
+      <button class="category-btn" onclick="selectRole('admin', this)">Admin</button>
+    </div>
+
+    <!-- Toggle -->
+    <div class="toggle">
+      <button class="toggle-btn active" onclick="showLogin()">Sign In</button>
+      <button class="toggle-btn" onclick="showRegister()">Register</button>
+    </div>
+
+    <!-- Email -->
+    <label>Email ID</label>
+    <input type="email" id="email" placeholder="Enter your email">
+    <span class="error" id="emailError"></span>
+
+    <!-- Password -->
+    <label>Password</label>
+    <input type="password" id="password" placeholder="Enter strong password">
+    <span class="error" id="passwordError"></span>
+
+    <!-- Confirm Password -->
+    <div id="confirmBox" style="display:none;">
+      <label>Confirm Password</label>
+      <input type="password" id="confirmPassword" placeholder="Re-enter password">
+      <span class="error" id="confirmError"></span>
+    </div>
+
+    <!-- Action Button -->
+    <button class="login-btn" onclick="handleSubmit()">Continue</button>
+
+
+  </main>
+
+  <script src="login.js"></script>
+</body>
+
+</html>

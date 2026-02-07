@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>EduVillage – Quiz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="dashboard-page">
+
+    <!-- HEADER -->
+    <header class="header">
+        <button id="menuBtn" class="menu-btn">☰</button>
+
+        <div class="logo-container" style="display: flex;">
+            <img src="Long_logo.png" alt="Civora Nexus Logo" class="image-logo">
+            <div style="margin-left: 1.1rem;">
+                <h1 style="font-size: 1.3rem;">EduVillage</h1>
+                <small style="font-size: 0.8rem; opacity: 0.9;">by Civora Nexus</small>
+            </div>
+        </div>
+
+        <div class="profile">
+            <img src="https://i.pravatar.cc/40" alt="Profile">
+            <span>Hello, Student</span>
+        </div>
+    </header>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <nav>
+            <a href="student-dashboard.html">Dashboard</a>
+            <a href="mycourses.html">My Courses</a>
+            <a href="assignments.html">Assignments</a>
+            <a class="active" href="quiz.html">Quizzes</a>
+            <a href="certificates.html">Certificates</a>
+            <a href="messages.html">Messages</a>
+            <a href="settings.html">Settings</a>
+            <a href="login.html" id="logoutBtn">Logout</a>
+        </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main id="mainContent" class="main">
+        <div class="quiz-container">
+            <form id="quizForm" onsubmit="submitQuiz(event)">
+                <div class="quiz-header">
+                    <h2 id="quizTitle">Course Quiz</h2>
+                    <p>Answer all questions to unlock your certificate.</p>
+                </div>
+
+                <div id="questionsContainer">
+                    <!-- Questions injected here -->
+                </div>
+
+                <div class="quiz-result" id="quizResult" style="display:none;">
+                    <div class="score-display" id="scoreDisplay"></div>
+                    <p id="passFailMsg"></p>
+                    <button type="button" id="certBtn" style="display:none;"
+                        onclick="window.location.href='certificates.html'">Get Certificate</button>
+                </div>
+
+                <button type="submit" id="submitBtn" disabled>Submit (0/10)</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        // Embedded Quiz Logic
+        const questions = [
+            { q: "What does HTML stand for?", options: ["Hyper Text Markup Language", "Home Tool Markup Language", "Hyperlinks and Text Markup Language", "None of the above"], a: 0 },
+            { q: "Who is making the Web standards?", options: ["Google", "The World Wide Web Consortium", "Microsoft", "Mozilla"], a: 1 },
+            { q: "Choose the correct HTML element for the largest heading:", options: ["<h6>", "<head>", "<heading>", "<h1>"], a: 3 },
+            { q: "What is the correct HTML element for inserting a line break?", options: ["<lb>", "<br>", "<break>", "<b>"], a: 1 },
+            { q: "Which character is used to indicate an end tag?", options: ["^", "<", "/", "*"], a: 2 },
+            { q: "What does CSS stand for?", options: ["Creative Style Sheets", "Cascading Style Sheets", "Computer Style Sheets", "Colorful Style Sheets"], a: 1 },
+            { q: "Which HTML attribute is used to define inline styles?", options: ["font", "style", "class", "styles"], a: 1 },
+            { q: "Which is the correct CSS syntax?", options: ["body {color: black;}", "{body;color:black;}", "body:color=black;", "{body:color=black;}"], a: 0 },
+            { q: "Inside which HTML element do we put the JavaScript?", options: ["<scripting>", "<js>", "<script>", "<javascript>"], a: 2 },
+            { q: "Where is the correct place to insert a JavaScript?", options: ["The <head> section", "The <body> section", "Both <head> and <body>", "None"], a: 2 }
+        ];
+
+        const container = document.getElementById("questionsContainer");
+
+        // Render Questions
+        questions.forEach((q, index) => {
+            const div = document.createElement("div");
+            div.className = "question-box";
+            div.innerHTML = `
+            <p class="question-text">${index + 1}. ${q.q}</p>
+            <div class="options-list">
+                ${q.options.map((opt, i) => `
+                    <label class="option-label">
+                        <input type="radio" name="q${index}" value="${i}" onchange="checkCompletion()">
+                        ${opt}
+                    </label>
+                `).join('')}
+            </div>
+        `;
+            container.appendChild(div);
+        });
+
+        function checkCompletion() {
+            const formData = new FormData(document.getElementById("quizForm"));
+            const answered = [...formData.keys()].filter(k => k.startsWith('q')).length;
+            const btn = document.getElementById("submitBtn");
+
+            btn.textContent = `Submit (${answered}/10)`;
+            btn.disabled = answered < 10;
+
+            if (answered === 10) {
+                btn.style.backgroundColor = "var(--primary)";
+            }
+        }
+
+        function submitQuiz(e) {
+            e.preventDefault();
+            const formData = new FormData(document.getElementById("quizForm"));
+            let score = 0;
+
+            questions.forEach((q, i) => {
+                if (parseInt(formData.get(`q${i}`)) === q.a) score++;
+            });
+
+            // Show Results
+            const resultDiv = document.getElementById("quizResult");
+            const scoreDisplay = document.getElementById("scoreDisplay");
+            const msg = document.getElementById("passFailMsg");
+            const certBtn = document.getElementById("certBtn");
+            const submitBtn = document.getElementById("submitBtn");
+
+            submitBtn.style.display = "none";
+            resultDiv.style.display = "block";
+            scoreDisplay.textContent = `Score: ${score} / 10`;
+
+            if (score >= 5) {
+                msg.textContent = "Congratulations! You passed.";
+                msg.style.color = "green";
+                certBtn.style.display = "inline-block";
+                localStorage.setItem("certificate_earned_web_basics", "true"); // Mock save
+            } else {
+                msg.textContent = "You did not pass. Please try again.";
+                msg.style.color = "red";
+                setTimeout(() => location.reload(), 3000);
+            }
+        }
+
+        // Toggle Sidebar
+        document.getElementById("menuBtn")?.addEventListener("click", () => {
+            document.querySelector(".sidebar").classList.toggle("show");
+        });
+    </script>
+
+</body>
+
+</html>
