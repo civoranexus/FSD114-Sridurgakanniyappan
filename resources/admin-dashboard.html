@@ -2,76 +2,51 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Admin Dashboard | EduVillage</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Admin Dashboard | EduVillage</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="dashboard-page">
 
-    <header class="hero">
+  <header class="hero">
+    <!-- Logo -->
+    <img src="Long_logo.png" alt="EduVillage Logo" class="site-logo">
 
-        <!-- Logo -->
-        <img src="Long_logo.png" alt="EduVillage Logo" class="site-logo">
+    <h1>Admin Dashboard</h1>
+    <p>Platform control and monitoring</p>
 
-        <h1>Admin Dashboard</h1>
-        <p>Platform control and monitoring</p>
+    <!-- Logout -->
+    <button class="btn logout-btn" onclick="logout()">Logout</button>
+  </header>
 
-        <button class="btn logout-btn" id="logoutBtn" onclick="logout()">Logout</button>
+  <main class="cards-container">
 
-    </header>
+    <section class="card">
+      <h3>User Management</h3>
+      <p>Approve, block, or manage users.</p>
+      <a href="user-management.html" class="btn">Manage Users</a>
+    </section>
 
+    <section class="card">
+      <h3>Course Approval</h3>
+      <p>Review and approve courses.</p>
+      <a href="course-approval.html" class="btn">Approve Courses</a>
+    </section>
 
-    <main class="cards-container">
+    <section class="card">
+      <h3>Reports</h3>
+      <p>View platform analytics.</p>
+      <a href="reports.html" class="btn">View Reports</a>
+    </section>
 
-        <section class="card">
-            <h3>User Management</h3>
-            <p>Approve, block, or manage users.</p>
-            <a href="./user-management.html" class="btn">Manage Users</a>
-        </section>
+  </main>
 
-        <section class="card">
-            <h3>Course Approval</h3>
-            <p>Review and approve courses.</p>
-            <a href="./course-approval.html" class="btn">Approve Courses</a>
-        </section>
-
-        <section class="card">
-            <h3>Reports</h3>
-            <p>View platform analytics.</p>
-            <a href="./reports.html" class="btn">View Reports</a>
-        </section>
-
-    </main>
-    </main>
-
-    <script src="./api.js"></script>
-    <script src="./logout.js"></script>
-    <script>
-(async function () {
-  const token = localStorage.getItem("token");
-  if (!token) return window.location.href = "login.html";
-
-  try {
-    const res = await fetch("http://127.0.0.1:8000/api/auth/me/", {
-      headers: { Authorization: "Bearer " + token }
-    });
-
-    if (!res.ok) throw new Error("Unauthorized");
-
-    const user = await res.json();
-
-    if (user.role !== "Admin") {
-      localStorage.clear();
-      window.location.href = "login.html";
-    }
-
-  } catch (e) {
-    localStorage.clear();
-    window.location.href = "login.html";
-  }
-})();
-</script>
+  <!-- AUTH -->
+  <script src="js/auth.js"></script>
+  <script>
+    requireAuth("admin");
+  </script>
 
 </body>
 

@@ -44,7 +44,8 @@
       <a href="certificates.html">Certificates</a>
       <a href="messages.html">Messages</a>
       <a href="settings.html">Settings</a>
-      <a href="login.html" id="logoutBtn" onclick="logout()">Logout</a>
+      <!-- Logout -->
+    <button class="logout-btn" onclick="logout()">Logout</button>
     </nav>
   </aside>
 
@@ -221,26 +222,13 @@
 
   </main>
 
-  <!-- JS -->
-  <script src="student-dashboard.js"></script>
-  <script>
-    (async function () {
-      const token = localStorage.getItem("token");
-      if (!token) return window.location.href = "login.html";
+ <!-- JS -->
+<script src="js/auth.js"></script>
+<script>
+  requireAuth("student");
+</script>
+<script src="student-dashboard.js"></script>
 
-      try {
-        const res = await fetch("http://127.0.0.1:8000/api/users/me", {
-          headers: { "Authorization": `Bearer ${token}` }
-        });
-        if (!res.ok) throw new Error("Unauthorized");
-        const user = await res.json();
-        if (user.role !== "student") window.location.href = "login.html";
-      } catch (e) {
-        localStorage.clear();
-        window.location.href = "login.html";
-      }
-    })();
-  </script>
 </body>
 
 </html>

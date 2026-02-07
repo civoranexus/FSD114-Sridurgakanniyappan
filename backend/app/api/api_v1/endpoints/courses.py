@@ -1,6 +1,6 @@
 from typing import Any, List
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 
 from app.api import deps
 from app.models.course import Course, Subject
@@ -19,7 +19,7 @@ def read_courses(
     """
     Retrieve courses.
     """
-    courses = db.query(Course).offset(skip).limit(limit).all()
+    courses = db.query(Course).options(joinedload(Course.lessons)).offset(skip).limit(limit).all()
     return courses
 
 @router.post("/", response_model=CourseSchema)

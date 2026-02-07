@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <title>Teacher Dashboard | EduVillage</title>
   <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body class="dashboard-page">
@@ -20,18 +19,13 @@
       <h1>Teacher Dashboard</h1>
       <p>Platform control and monitoring</p>
 
-      <button class="logout-btn" id="logoutBtn" onclick="confirmLogout()">Logout</button>
+      <!-- Logout -->
+      <button class="logout-btn" onclick="logout()">Logout</button>
 
     </header>
 
-
     <!-- MAIN -->
     <main class="main-content">
-      <div class="heading">
-
-
-      </div>
-
 
       <section class="cards-container">
 
@@ -58,32 +52,11 @@
     </main>
   </div>
 
-  <script src="./logout.js"></script>
-<script>
-(async function () {
-  const token = localStorage.getItem("token");
-  if (!token) return window.location.href = "login.html";
-
-  try {
-    const res = await fetch("http://127.0.0.1:8000/api/auth/me/", {
-      headers: { Authorization: "Bearer " + token }
-    });
-
-    if (!res.ok) throw new Error("Unauthorized");
-
-    const user = await res.json();
-
-    if (user.role !== "teacher") {
-      localStorage.clear();
-      window.location.href = "login.html";
-    }
-
-  } catch (e) {
-    localStorage.clear();
-    window.location.href = "login.html";
-  }
-})();
-</script>
+  <!-- AUTH -->
+  <script src="js/auth.js"></script>
+  <script>
+    requireAuth("teacher");
+  </script>
 
 </body>
 

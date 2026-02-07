@@ -1,6 +1,7 @@
 from typing import List, Optional
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from app.schemas.lesson import Lesson
 
 # --- Course ---
 class CourseBase(BaseModel):
@@ -13,6 +14,7 @@ class CourseCreate(CourseBase):
 class Course(CourseBase):
     id: int
     teacher_id: int
+    lessons: List[Lesson] = Field(default_factory=list)
     
     class Config:
         from_attributes = True
