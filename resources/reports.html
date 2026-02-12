@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reports | EduVillage</title>
+  <link rel="stylesheet" href="teacher.css">
+</head>
+<body>
+
+<div class="layout">
+
+  <header class="header">
+    <div class="logo-container">
+      <img src="./Long_logo.png" alt="Civora Nexus Logo">
+      <div>
+        <h1>EduVillage</h1>
+        <small style="font-size: 0.8rem; opacity: 0.9;">by Civora Nexus</small>
+      </div>
+    </div>
+  </header>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <nav>
+      <a href="./admin-dashboard.html">Dashboard</a>
+      <a href="user-management.html">User Management</a>
+      <a href="course-approval.html">Course Approval</a>
+      <a class="active" href="reports.html">Reports</a>
+      <a href="#" id="logoutBtn" onclick="confirmLogout()">Logout</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT (ONLY THIS CHANGED) -->
+  <main class="main-content">
+    <h2>Reports & Analytics</h2>
+
+    <div class="card-grid">
+      <div class="card">
+        <h3>User Growth</h3>
+        <p>Total users registered on the platform.</p>
+        <p><strong>1,250+</strong></p>
+      </div>
+
+      <div class="card">
+        <h3>Course Statistics</h3>
+        <p>Total active and completed courses.</p>
+        <p><strong>86 Active</strong></p>
+      </div>
+
+      <div class="card">
+        <h3>Certificates Issued</h3>
+        <p>Total certificates generated so far.</p>
+        <p><strong>430</strong></p>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<script src="./logout.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Course Details | EduVillage</title>
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body>
+
+<main class="main">
+  <div id="courseDetails" class="course-details-card">
+    <p>Loading course...</p>
+  </div>
+</main>
+
+<script>
+const courseData = {
+  "web-development-basics": {
+    title: "Web Development Basics",
+    duration: "6 Weeks",
+    level: "Beginner",
+    type: "Free",
+    about: "Learn HTML, CSS, and JavaScript from scratch and build real websites.",
+    lessons: [
+      "Introduction to HTML",
+      "CSS Styling Basics",
+      "JavaScript Fundamentals"
+    ]
+  },
+  "react-fundamentals": {
+    title: "React Fundamentals",
+    duration: "4 Weeks",
+    level: "Beginner",
+    type: "Free",
+    about: "Understand React components, hooks, and state management.",
+    lessons: [
+      "JSX & Components",
+      "Props & State",
+      "React Hooks"
+    ]
+  },
+  "uiux-design": {
+    title: "UI/UX Design",
+    duration: "3 Weeks",
+    level: "Beginner",
+    type: "Paid",
+    about: "Design user-friendly interfaces using Figma and UX principles.",
+    lessons: [
+      "Design Fundamentals",
+      "Wireframing",
+      "Prototyping"
+    ]
+  }
+};
+
+const params = new URLSearchParams(window.location.search);
+const courseId = params.get("course");
+const course = courseData[courseId];
+const container = document.getElementById("courseDetails");
+
+if (!course) {
+  container.innerHTML = "<h2>Course not found</h2>";
+} else {
+  container.innerHTML = `
+    <div class="course-header">
+      <h2>${course.title}</h2>
+      <p class="course-about">${course.about}</p>
+    </div>
+
+    <div class="course-meta">
+      <span><strong>Duration:</strong> ${course.duration}</span>
+      <span><strong>Level:</strong> ${course.level}</span>
+      <span><strong>Type:</strong> ${course.type}</span>
+    </div>
+
+    <div class="course-section">
+      <h3>What you’ll learn</h3>
+      <ul class="lesson-list">
+        ${course.lessons.map(l => `<li>${l}</li>`).join("")}
+      </ul>
+    </div>
+
+    <div class="course-actions">
+      <button onclick="startCourse('${courseId}')">Start Course</button>
+      <button class="secondary" onclick="goBack()">← Back to Browse</button>
+    </div>
+  `;
+}
+
+function startCourse(id) {
+  window.location.href = `course-player.html?course=${id}`;
+}
+
+function goBack() {
+  window.location.href = "student-dashboard.html#browseCoursesSection";
+}
+</script>
+
+</body>
+</html>
+
+
+
+

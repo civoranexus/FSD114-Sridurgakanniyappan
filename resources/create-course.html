@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Course | EduVillage</title>
+  <link rel="stylesheet" href="teacher.css">
+</head>
+<body>
+
+<div class="layout">
+
+   <header class="header">
+
+    <div class="logo-container">
+      <img src="./Long_logo.png" alt="Civora Nexus Logo">
+      <div>
+        <h1>EduVillage</h1>
+        <small style="font-size: 0.8rem; opacity: 0.9;">by Civora Nexus</small>
+      </div>
+    </div>
+
+  </header>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <nav>
+      <a class="active" href="./teacher-dashboard.html">Dashboard</a>
+      <a href="create-course.html">Create Course</a>
+      <a href="studentprogress.html">Student Progress</a>
+      <a href="courses.html">My Courses</a>
+      <a href="settings.html">Settings</a>
+      <a href="#" id="logoutBtn" onclick="confirmLogout()">Logout</a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <h2>Create Course</h2>
+
+    <div class="card-grid">
+      <div class="card">
+        <h3>Course Details</h3>
+        <p>Add title, description, and category.</p>
+      </div>
+
+      <div class="card">
+        <h3>Add Lessons</h3>
+        <p>Upload videos, PDFs, and notes.</p>
+      </div>
+
+      <div class="card">
+        <h3>Create Quiz</h3>
+        <p>Add MCQs and assessments.</p>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<script src="./logout.js"></script>
+</body>
+</html>

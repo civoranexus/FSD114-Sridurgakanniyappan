@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>EduVillage – Settings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="settings.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="dashboard-page">
+
+    <!-- HEADER -->
+    <header class="header">
+        <button id="menuBtn" class="menu-btn">☰</button>
+
+        <div class="logo-container">
+            <img src="Long_logo.png" alt="Civora Nexus Logo">
+            <div>
+                <h1>EduVillage</h1>
+                <small style="font-size: 0.8rem; opacity: 0.9;">by Civora Nexus</small>
+            </div>
+        </div>
+
+        <div class="profile">
+            <img src="https://i.pravatar.cc/40" alt="Profile">
+            <span>Hello, Student</span>
+        </div>
+    </header>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <nav>
+            <a href="student-dashboard.html">Dashboard</a>
+            <a href="mycourses.html">My Courses</a>
+            <a href="certificates.html">Certificates</a>
+            <a href="messages.html">Messages</a>
+            <a class="active" href="settings.html">Settings</a>
+            <a href="login.html" id="logoutBtn">Logout</a>
+        </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main id="mainContent" class="main">
+        <h2>Account Settings</h2>
+
+        <div class="settings-form">
+            <form onsubmit="event.preventDefault(); alert('Settings saved!');">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" value="Student Name">
+                </div>
+
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" value="student@civoranexus.com">
+                </div>
+
+                <div class="form-group">
+                    <label>Change Password</label>
+                    <input type="password" placeholder="New Password">
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label><input type="checkbox" checked> Email Notifications</label>
+                    <label><input type="checkbox" checked> SMS Notifications</label>
+                </div>
+
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        // Toggle Sidebar
+        document.getElementById("menuBtn")?.addEventListener("click", () => {
+            document.querySelector(".sidebar").classList.toggle("show");
+        });
+    </script>
+
+</body>
+
+</html>

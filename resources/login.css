@@ -1,0 +1,109 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #E0F7FA;
+  margin: 0;
+  color: #0C4A50;
+}
+
+/* Header */
+.login-header {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.logo {
+  height: 70px;
+  margin-bottom: 10px;
+}
+
+/* Container */
+.login-container {
+  max-width: 450px;
+  margin: auto;
+  background: white;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(12, 74, 80, 0.2);
+}
+
+/* Category Selection */
+.category-select {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.category-btn {
+  flex: 1;
+  margin: 0 5px;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  background: #76D6E1;
+  color: #0C4A50;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.category-btn.active {
+  background: #1B9AAA;
+  color: white;
+}
+
+/* Toggle */
+.toggle {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.toggle-btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  background: #76D6E1;
+  color: #0C4A50;
+  font-weight: 600;
+}
+
+.toggle-btn.active {
+  background: #1B9AAA;
+  color: white;
+}
+
+/* Inputs */
+label {
+  display: block;
+  margin-top: 15px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* Errors */
+.error {
+  color: red;
+  font-size: 0.85rem;
+}
+
+/* Button */
+.login-btn {
+  width: 100%;
+  margin-top: 25px;
+  padding: 12px;
+  border: none;
+  border-radius: 30px;
+  background: #1B9AAA;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  background: #147783;
+}

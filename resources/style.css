@@ -1,0 +1,175 @@
+/* General Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #E0F7FA;
+  /* light sky background */
+  margin: 0;
+  color: #0C4A50;
+  /* dark teal text */
+}
+
+/* Buttons (Global) */
+.btn {
+  padding: 12px 30px;
+  background-color: #E0F7FA;
+  /* existing color */
+  color: #147783;
+  /* existing color */
+  border: none;
+  border-radius: 30px;
+  /* rounded corners */
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.btn:hover {
+  background-color: #76D6E1;
+  color: #0C4A50;
+  transform: translateY(-2px);
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #1B9AAA, #147783);
+  color: white;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+}
+
+/* Hero button */
+.hero .btn {
+  background-color: #E0F7FA;
+  color: #147783;
+}
+
+/* Cards Container */
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* Individual Card */
+.card {
+  background-color: #ffffff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(12, 74, 80, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(12, 74, 80, 0.18);
+}
+
+.card h3 {
+  color: #1B9AAA;
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+}
+
+.card p {
+  margin-bottom: 18px;
+  font-size: 1rem;
+  color: #0C4A50;
+}
+
+.card ul {
+  list-style: disc inside;
+  line-height: 1.6;
+}
+
+/* Card buttons */
+.card .btn {
+  background-color: #1B9AAA;
+  color: #ffffff;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.card a{
+  text-decoration: none;
+}
+
+/* Responsive Layout */
+@media (min-width: 900px) {
+  .cards-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .card {
+    flex: 1;
+  }
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #0C4A50;
+  color: #E0F7FA;
+}
+
+/* Course Card – ONLY for landing / public pages */
+.landing-page .course-card {
+  background: #ffffff;
+  padding: 15px;
+  margin: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px #ccc;
+}
+
+
+/* Logo */
+.site-logo {
+  height: 80px;
+  margin-bottom: 20px;
+}
+
+.heading {
+  text-align: center;
+}
+
+.main-content .cards-container .card .btn{
+  margin-top: 50px;
+}
+
+.main-content .cards-container .card .btn:hover{
+  background-color: #1B9AAA;
+  color: #ffffff;
+}
+
+.logout-btn {
+  margin-top: 20px;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 25px;
+  background-color: #fff; /* matches your theme */
+  color: #000;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.logout-btn:hover {
+  background-color: #0c7c88;
+}
+

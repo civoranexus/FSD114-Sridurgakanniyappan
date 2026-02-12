@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard | EduVillage</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dashboard-page">
+
+  <header class="hero">
+    <!-- Logo -->
+    <img src="Long_logo.png" alt="EduVillage Logo" class="site-logo">
+
+    <h1>Admin Dashboard</h1>
+    <p>Platform control and monitoring</p>
+
+    <!-- Logout -->
+    <button class="btn logout-btn" onclick="logout()">Logout</button>
+  </header>
+
+  <main class="cards-container">
+
+    <section class="card">
+      <h3>User Management</h3>
+      <p>Approve, block, or manage users.</p>
+      <a href="user-management.html" class="btn">Manage Users</a>
+    </section>
+
+    <section class="card">
+      <h3>Course Approval</h3>
+      <p>Review and approve courses.</p>
+      <a href="course-approval.html" class="btn">Approve Courses</a>
+    </section>
+
+    <section class="card">
+      <h3>Reports</h3>
+      <p>View platform analytics.</p>
+      <a href="reports.html" class="btn">View Reports</a>
+    </section>
+
+  </main>
+
+  <!-- AUTH -->
+  <script src="auth.js"></script>
+  <script>
+    requireAuth("admin");
+  </script>
+
+</body>
+
+</html>

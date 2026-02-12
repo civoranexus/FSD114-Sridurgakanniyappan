@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>User Management | EduVillage</title>
+  <link rel="stylesheet" href="teacher.css">
+</head>
+
+<body>
+
+  <div class="layout">
+
+    <header class="header">
+      <div class="logo-container">
+        <img src="./Long_logo.png" alt="Civora Nexus Logo">
+        <div>
+          <h1>EduVillage</h1>
+          <small style="font-size: 0.8rem; opacity: 0.9;">by Civora Nexus</small>
+        </div>
+      </div>
+    </header>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <nav>
+        <a href="./admin-dashboard.html">Dashboard</a>
+        <a class="active" href="user-management.html">User Management</a>
+        <a href="course-approval.html">Course Approval</a>
+        <a href="reports.html">Reports</a>
+        <a href="#" id="logoutBtn" onclick="confirmLogout()">Logout</a>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT (ONLY THIS CHANGED) -->
+    <main class="main-content">
+      <h2>User Management</h2>
+
+      <div class="card-grid">
+        <div class="card">
+          <h3>Total Users</h3>
+          <p>View and manage all registered users.</p>
+          <p><strong>Count:</strong> 1,250</p>
+        </div>
+
+        <div class="card">
+          <h3>Approve Users</h3>
+          <p>Approve newly registered instructors and students.</p>
+        </div>
+
+        <div class="card">
+          <h3>Block / Unblock</h3>
+          <p>Restrict or restore user access when required.</p>
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <script src="auth.js"></script>
+</body>
+
+</html>

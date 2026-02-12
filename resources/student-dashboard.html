@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>EduVillage – Student Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="student-dashboard.css">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <button id="menuBtn" class="menu-btn">☰</button>
+
+    <div class="logo-container">
+      <img src="Long_logo.png" alt="Civora Nexus Logo">
+      <div>
+        <h1>EduVillage</h1>
+        <small style="font-size: 0.8rem; opacity: 0.9;">by Civora Nexus</small>
+      </div>
+    </div>
+
+    <div class="profile">
+      <img src="https://i.pravatar.cc/40" alt="Profile">
+      <span>Hello, Student</span>
+    </div>
+  </header>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <nav>
+      <a class="active" href="student-dashboard.html">Dashboard</a>
+      <a href="mycourses.html">My Courses</a>
+      <a href="certificates.html">Certificates</a>
+      <a href="messages.html">Messages</a>
+      <a href="settings.html">Settings</a>
+      <!-- Logout -->
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main id="mainContent" class="main">
+
+    <p>Loading Dashboard...</p>
+
+  </main>
+
+  <!-- JS -->
+  <script src="auth.js"></script>
+  <script>
+    requireAuth("student");
+  </script>
+  <script src="student-dashboard.js"></script>
+
+</body>
+
+</html>

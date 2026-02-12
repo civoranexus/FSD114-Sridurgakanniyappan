@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Teacher Dashboard | EduVillage</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dashboard-page">
+
+  <div class="layout">
+
+    <header class="hero">
+
+      <!-- Logo -->
+      <img src="Long_logo.png" alt="EduVillage Logo" class="site-logo">
+
+      <h1>Teacher Dashboard</h1>
+      <p>Platform control and monitoring</p>
+
+      <!-- Logout -->
+      <button class="logout-btn" onclick="logout()">Logout</button>
+
+    </header>
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+      <section class="cards-container">
+
+        <div class="card">
+          <h3>Create Course</h3>
+          <p>Add new lessons, videos, and quizzes.</p>
+          <a href="create-course.html" class="btn">Create</a>
+        </div>
+
+        <div class="card">
+          <h3>Student Progress</h3>
+          <p>Monitor student performance.</p>
+          <a href="studentprogress.html" class="btn">View Progress</a>
+        </div>
+
+        <div class="card">
+          <h3>My Courses</h3>
+          <p>Edit or update your courses.</p>
+          <a href="courses.html" class="btn">Manage</a>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+  <!-- AUTH -->
+  <script src="auth.js"></script>
+  <script>
+    requireAuth("teacher");
+  </script>
+
+</body>
+
+</html>
