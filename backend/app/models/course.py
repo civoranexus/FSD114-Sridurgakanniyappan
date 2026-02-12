@@ -12,6 +12,7 @@ class Course(Base):
 
     teacher = relationship("User", backref="courses_taught")
     subjects = relationship("Subject", back_populates="course")
+    lessons = relationship("Lesson", back_populates="course")
     enrollments = relationship("Enrollment", back_populates="course")
     assignments = relationship("Assignment", back_populates="course")
 

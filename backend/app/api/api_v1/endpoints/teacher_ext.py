@@ -5,9 +5,11 @@ from app.api import deps
 from app.models.user import User
 from app.models.enrollment import Enrollment
 
+from app.schemas.user import UserResponse
+
 router = APIRouter()
 
-@router.get("/teacher/students/{course_id}", response_model=List[Any])
+@router.get("/teacher/students/{course_id}", response_model=List[UserResponse])
 def get_students_for_course(
     course_id: int,
     db: Session = Depends(deps.get_db),

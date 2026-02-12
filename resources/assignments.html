@@ -2,110 +2,57 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>EduVillage – Assignments</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>EduVillage – Assignments</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="dashboard.css">
-    <link rel="stylesheet" href="style.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="style.css">
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <body class="dashboard-page">
 
-    <!-- HEADER -->
-    <header class="header">
-        <button id="menuBtn" class="menu-btn">☰</button>
-       <div class="logo-container" style="display: flex;">
-            <img src="Long_logo.png" alt="Civora Nexus Logo" class="image-logo">
-            <div style="margin-left: 1.1rem;">
-                <h1 style="font-size: 1.3rem;">EduVillage</h1>
-                <small style="font-size: 0.8rem; opacity: 0.9;">by Civora Nexus</small>
-            </div>
-        </div>
-
-        <div class="profile">
-            <img src="https://i.pravatar.cc/40" alt="Profile">
-            <span>Hello, Student</span>
-        </div>
-    </header>
-
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-        <nav>
-            <a href="student-dashboard.html">Dashboard</a>
-            <a href="mycourses.html">My Courses</a>
-            <a class="active" href="assignments.html">Assignments</a>
-            <a href="quiz.html">Quizzes</a>
-            <a href="certificates.html">Certificates</a>
-            <a href="messages.html">Messages</a>
-            <a href="settings.html">Settings</a>
-            <a href="login.html" id="logoutBtn" onclick="confirmLogout()">Logout</a>
-        </nav>
-    </aside>
-
- <!-- MAIN CONTENT -->
-<main id="mainContent" class="main">
-
-  <section class="assignments-page">
-
-    <h2 class="page-title">Assignments</h2>
-
-    <!-- Pending Assignments -->
-    <div class="assignment-section">
-      <h3>Pending Assignments</h3>
-
-      <div class="assignment-list">
-        <div class="assignment-card">
-          <h4>Build a Portfolio Website</h4>
-          <p><strong>Course:</strong> Web Development Basics</p>
-          <p><strong>Due:</strong> 25 Jan 2026</p>
-
-          <div class="assignment-footer">
-            <span class="badge pending">Pending</span>
-            <button class="btn">Submit</button>
-          </div>
-        </div>
-
-        <div class="assignment-card">
-          <h4>React To-Do App</h4>
-          <p><strong>Course:</strong> React Fundamentals</p>
-          <p><strong>Due:</strong> 30 Jan 2026</p>
-
-          <div class="assignment-footer">
-            <span class="badge pending">Pending</span>
-            <button class="btn">Submit</button>
-          </div>
-        </div>
+  <!-- HEADER -->
+  <header class="header">
+    <button id="menuBtn" class="menu-btn">☰</button>
+    <div class="logo-container" style="display: flex;">
+      <img src="Long_logo.png" alt="Civora Nexus Logo" class="image-logo">
+      <div style="margin-left: 1.1rem;">
+        <h1 style="font-size: 1.3rem;">EduVillage</h1>
+        <small style="font-size: 0.8rem; opacity: 0.9;">by Civora Nexus</small>
       </div>
     </div>
 
-    <!-- Submitted Assignments -->
-    <div class="assignment-section">
-      <h3>Submitted Assignments</h3>
-
-      <div class="assignment-list">
-        <div class="assignment-card submitted">
-          <h4>Python Snake Game</h4>
-          <p><strong>Course:</strong> Python for Beginners</p>
-          <p><strong>Submitted:</strong> 12 Jan 2026</p>
-          <p><strong>Grade:</strong> 95 / 100</p>
-
-          <div class="assignment-footer">
-            <span class="badge submitted">Submitted</span>
-          </div>
-        </div>
-      </div>
+    <div class="profile">
+      <img src="https://i.pravatar.cc/40" alt="Profile">
+      <span>Hello, Student</span>
     </div>
+  </header>
 
-  </section>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <nav>
+      <a href="student-dashboard.html">Dashboard</a>
+      <a href="mycourses.html">My Courses</a>
+      <a class="active" href="assignments.html">Assignments</a>
+      <a href="quiz.html">Quizzes</a>
+      <a href="certificates.html">Certificates</a>
+      <a href="messages.html">Messages</a>
+      <a href="settings.html">Settings</a>
+      <a href="login.html" id="logoutBtn" onclick="confirmLogout()">Logout</a>
+    </nav>
+  </aside>
 
-</main>
+  <!-- MAIN CONTENT -->
+  <main id="mainContent" class="main">
+    <p>Loading assessments...</p>
+  </main>
 
-    <script src="student-dashboard.js"></script>
+  <script src="student-dashboard.js"></script>
 </body>
 
 </html>

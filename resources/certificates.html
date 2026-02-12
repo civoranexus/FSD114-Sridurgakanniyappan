@@ -42,8 +42,6 @@
         <nav>
             <a href="student-dashboard.html">Dashboard</a>
             <a href="mycourses.html">My Courses</a>
-            <a href="assignments.html">Assignments</a>
-            <a href="quiz.html">Quizzes</a>
             <a class="active" href="certificates.html">Certificates</a>
             <a href="messages.html">Messages</a>
             <a href="settings.html">Settings</a>
@@ -53,94 +51,10 @@
 
     <!-- MAIN CONTENT -->
     <main id="mainContent" class="main">
-        <h2>My Certificates</h2>
-        <div class="list-container">
-
-            <div class="certificate-card">
-                <div class="cert-info">
-                    <h3>Python for Beginners</h3>
-                    <p>Completed on: Jan 10, 2026</p>
-                    <p>Grade: Passed</p>
-                </div>
-                <button onclick="generateCertificate('Python for Beginners')">Download Certificate</button>
-            </div>
-
-            <div class="certificate-card">
-                <div class="cert-info">
-                    <h3>Data Structures & Algorithms</h3>
-                    <p>Completed on: Dec 15, 2025</p>
-                    <p>Grade: Passed</p>
-                </div>
-                <button onclick="generateCertificate('Data Structures & Algorithms')">Download Certificate</button>
-            </div>
-
-        </div>
+        <p>Loading your certificates...</p>
     </main>
 
-    <script>
-    function generateCertificate(courseName) {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF({ orientation: 'landscape' });
-
-        const studentName = "Student Name";
-        const date = new Date().toLocaleDateString();
-
-        // Load Logo
-        const logo = new Image();
-        logo.src = "Long_logo.png";
-
-        logo.onload = function () {
-
-            /* ===== Border ===== */
-            doc.setLineWidth(3);
-            doc.rect(10, 10, 277, 190);
-
-            /* ===== Logo ===== */
-            doc.addImage(logo, "PNG", 118, 18, 42, 22);
-
-            /* ===== Title (moved down for spacing) ===== */
-            doc.setFont("helvetica", "bold");
-            doc.setFontSize(36);
-            doc.text("CERTIFICATE OF COMPLETION", 148.5, 65, { align: "center" });
-
-            /* ===== Subtitle ===== */
-            doc.setFont("helvetica", "italic");
-            doc.setFontSize(18);
-            doc.text("This is to certify that", 148.5, 92, { align: "center" });
-
-            /* ===== Student Name ===== */
-            doc.setFont("times", "bold");
-            doc.setFontSize(34);
-            doc.setTextColor(27, 154, 170);
-            doc.text(studentName, 148.5, 115, { align: "center" });
-
-            /* ===== Supporting Text ===== */
-            doc.setTextColor(0, 0, 0);
-            doc.setFont("helvetica", "normal");
-            doc.setFontSize(18);
-            doc.text("has successfully completed the course", 148.5, 135, { align: "center" });
-
-            /* ===== Course Name ===== */
-            doc.setFont("times", "italic");
-            doc.setFontSize(28);
-            doc.text(courseName, 148.5, 155, { align: "center" });
-
-            /* ===== Footer ===== */
-            doc.setFont("helvetica", "normal");
-            doc.setFontSize(14);
-            doc.text(`Date: ${date}`, 40, 175);
-            doc.text("EduVillage by Civora Nexus", 257, 175, { align: "right" });
-
-            /* ===== Save ===== */
-            doc.save(`Certificate-${courseName.replace(/\s+/g, '-')}.pdf`);
-        };
-    }
-
-    // Sidebar Toggle
-    document.getElementById("menuBtn")?.addEventListener("click", () => {
-        document.querySelector(".sidebar").classList.toggle("show");
-    });
-</script>
+    <script src="student-dashboard.js"></script>
 
 
 

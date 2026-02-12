@@ -13,4 +13,5 @@ class Lesson(Base):
     order = Column(Integer, default=0)
     course_id = Column(Integer, ForeignKey("courses.id"))
 
-    course = relationship("Course", backref="lessons")
+    course = relationship("Course", back_populates="lessons")
+

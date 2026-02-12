@@ -5,11 +5,11 @@ from app.api import deps
 from app.models.course import Course
 from app.models.user import User
 from app.models.course_approval import CourseApproval, ApprovalStatus
-from app.schemas.course_approval import CourseApprovalUpdate
+from app.schemas.course_approval import CourseApprovalUpdate, CourseApproval as CourseApprovalSchema
 
 router = APIRouter()
 
-@router.get("/admin/courses/pending", response_model=List[Any])
+@router.get("/admin/courses/pending", response_model=List[CourseApprovalSchema])
 def get_pending_courses(
     db: Session = Depends(deps.get_db),
     current_user = Depends(deps.get_current_active_admin),

@@ -309,3 +309,251 @@ button {
   font-size: 20px;
   margin-bottom: 12px;
 }
+
+/* MESSAGES & NOTIFICATIONS */
+.messages-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.notifications-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.notification-card {
+  background: var(--white);
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid var(--primary);
+  transition: transform 0.2s;
+}
+
+.notification-card:hover {
+  transform: translateY(-2px);
+}
+
+.notification-card.unread {
+  border-left-color: #ff9800;
+  background: #fffdf9;
+}
+
+.notif-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.notif-title {
+  font-weight: 600;
+  color: var(--text-dark);
+  font-size: 16px;
+}
+
+.notif-date {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.notif-content {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* PLAYER LAYOUT (2 COLUMNS) */
+.player-layout {
+  display: flex;
+  height: calc(100vh - 130px);
+  gap: 20px;
+}
+
+.player-sidebar-col {
+  width: 300px;
+  background: var(--white);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.course-player-title {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: var(--text-dark);
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.lesson-list-sidebar {
+  list-style: none;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.module-item {
+  padding: 12px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: background 0.2s;
+  margin-bottom: 5px;
+}
+
+.module-item:hover {
+  background: #f0fbfc;
+}
+
+.module-item.active {
+  background: #e1f5f7;
+  color: var(--primary);
+  font-weight: 600;
+  border-left: 4px solid var(--primary);
+}
+
+.status-icon {
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
+}
+
+.player-main-col {
+  flex-grow: 1;
+  background: var(--white);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.video-container-wrap {
+  background: #000;
+  aspect-ratio: 16/9;
+  width: 100%;
+}
+
+.video-responsive {
+  width: 100%;
+  height: 100%;
+}
+
+.video-responsive iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.no-video-placeholder {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.lesson-content-footer {
+  padding: 25px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.lesson-header-info h2 {
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.lesson-body-text {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.player-controls-row {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-ctrl {
+  padding: 12px 25px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+}
+
+.btn-ctrl.prev {
+  background: #eee;
+  color: #333;
+}
+
+.btn-ctrl.next {
+  background: var(--primary);
+  color: #fff;
+}
+
+.back-btn-player {
+  margin-top: 20px;
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.back-btn-player:hover {
+  background: #f0fbfc;
+}
+
+/* QUIZ STYLES */
+.quiz-view-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.quiz-card {
+  padding: 30px;
+  margin-top: 20px;
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.quiz-q-block {
+  padding: 15px;
+  border-bottom: 1px solid #efefef;
+}
+
+.quiz-q-block:last-child {
+  border-bottom: none;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin-top: 15px;
+  cursor: pointer;
+}
