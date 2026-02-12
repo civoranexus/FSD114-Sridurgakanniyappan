@@ -22,7 +22,6 @@ def read_users(
 def create_user(
     user_in: UserCreate,
     db: Session = Depends(deps.get_db),
-    current_user: User = Depends(deps.get_current_active_admin),
 ) -> Any:
 
     user = db.query(User).filter(User.email == user_in.email).first()

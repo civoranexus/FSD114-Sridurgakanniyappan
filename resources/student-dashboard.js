@@ -51,10 +51,10 @@ if (logoutBtn) {
 // ===== API HELPERS =====
 async function authFetch(endpoint, options = {}) {
   const headers = {
-  ...(options.headers || {}),
-  Authorization: `Bearer ${token}`,
-};
-  
+    ...(options.headers || {}),
+    Authorization: `Bearer ${token}`,
+  };
+
   const res = await fetch(`${API_BASE}${endpoint}`, { ...options, headers });
   if (res.status === 401) {
     localStorage.clear();
@@ -176,64 +176,161 @@ async function loadPage(page) {
 // ===== RENDERERS =====
 
 function renderDashboard() {
-  if (allCourses.length === 0) {
-    return `
-      <h2>Welcome Back!</h2>
-      <p>No courses available at the moment.</p>
-      <section class="stats">
-        <div class="card"><h3>Enrolled Courses</h3><p>0</p></div>
-        <div class="card"><h3>Certificates</h3><p>0</p></div>
-      </section>
-    `;
-  }
-
-  let pending = '', completed = '';
-  // Count certs
+  // 1. Stats
   let certCount = 0;
+  let enrolledCount = 0;
 
-  allCourses.forEach(course => {
-    const id = course.id;
-    // Calculate progress
-    const progressIdx = parseInt(localStorage.getItem(`course_progress_${id}`) || 0);
-    const totalLessons = course.lessons ? course.lessons.length : 0;
-
-    // Determine percent
-    let percent = 0;
-    const isCertified = localStorage.getItem(`certificate_earned_${id}`);
-    const videoDone = localStorage.getItem(`course_video_done_${id}`);
-
-    if (isCertified) {
-      percent = 100;
-      certCount++;
-    } else if (videoDone) {
-      percent = 90; // Almost done, needs assignment
-    } else if (totalLessons > 0) {
-      percent = Math.round((progressIdx / totalLessons) * 100);
-    }
-
-    const cardHtml = `
-      <div class="course-card">
-        <h3>${course.title}</h3>
-        <p>${course.description || "No description"}</p>
-        <p class="meta">${totalLessons} Lessons</p>
-        ${getProgressBar(percent)}
-        ${getCourseButton(id)}
-      </div>
-    `;
-
-    if (isCertified) completed += cardHtml;
-    else pending += cardHtml;
+  // Calculate basic stats
+  allCourses.forEach(c => {
+    if (localStorage.getItem(`certificate_earned_${c.id}`)) certCount++;
+    if (localStorage.getItem(`course_progress_${c.id}`) || localStorage.getItem(`course_video_done_${c.id}`)) enrolledCount++;
   });
 
+  // 2. Build My Courses (Active)
+  let myCoursesHtml = '';
+  const myCourses = allCourses.filter(c => localStorage.getItem(`course_progress_${c.id}`) || localStorage.getItem(`course_video_done_${c.id}`));
+
+  if (myCourses.length > 0) {
+    myCourses.forEach(course => {
+      const id = course.id;
+      const totalLessons = course.lessons ? course.lessons.length : 0;
+      let percent = 0;
+      const isCertified = localStorage.getItem(`certificate_earned_${id}`);
+      const videoDone = localStorage.getItem(`course_video_done_${id}`);
+      const progressIdx = parseInt(localStorage.getItem(`course_progress_${id}`) || 0);
+
+      if (isCertified) percent = 100;
+      else if (videoDone) percent = 90;
+      else if (totalLessons > 0) percent = Math.round((progressIdx / totalLessons) * 100);
+
+      myCoursesHtml += `
+          <div class="course-card">
+            <h3>${course.title}</h3>
+            <p>${course.description || "No description"}</p>
+            <p class="meta">${totalLessons} Lessons</p>
+            ${getProgressBar(percent)}
+            ${getCourseButton(id)}
+          </div>
+        `;
+    });
+  } else {
+    myCoursesHtml = '<p>You have not started any courses yet.</p>';
+  }
+
+  // 3. Build All Courses (Browse) - showing ALL courses for now
+  let browseHtml = '';
+  allCourses.forEach(course => {
+    browseHtml += `
+      <div class="course-card" data-title="${course.title.toLowerCase()}">
+        <h3>${course.title}</h3>
+        <p>${course.description || "No description"}</p>
+        <p class="meta">${course.lessons ? course.lessons.length : 0} Lessons</p>
+        <button onclick="loadCourse(${course.id})">Start Learning</button>
+      </div>
+    `;
+  });
+
+  // 4. Return Full HTML
+  // We allow the search bar script to run after render by using a timeout or explicit call
+  setTimeout(initSearch, 100);
+
   return `
+      <!-- STATS -->
       <section class="stats">
-        <div class="card"><h3>Enrolled Courses</h3><p>${allCourses.length}</p></div>
+        <div class="card"><h3>All Courses</h3><p>${allCourses.length}</p></div>
+        <div class="card"><h3>Enrolled</h3><p>${enrolledCount}</p></div>
         <div class="card"><h3>Certificates</h3><p>${certCount}</p></div>
       </section>
 
-      <section class="courses"><h2>My Courses</h2>${pending || '<p>No active courses.</p>'}</section>
-      ${completed ? `<section class="courses"><h2>✅ Completed</h2>${completed}</section>` : ''}
+      <!-- MY COURSES -->
+      <section class="courses">
+        <h2>My Active Courses</h2>
+        <div class="course-grid">
+            ${myCoursesHtml}
+        </div>
+      </section>
+
+      <!-- BROWSE COURSES (WITH SEARCH) -->
+      <section class="browse-section" id="browseCoursesSection">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Browse Courses</h2>
+            <p class="section-subtitle">Explore courses and enroll to start learning</p>
+          </div>
+          
+          <div class="search-wrap" style="position: relative;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #aaa;">
+                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <input type="text" id="courseSearchInput" placeholder="Search courses (HTML, Python, UI/UX)" style="padding-left: 38px;" />
+          </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters-grid">
+          <select id="filterCategory">
+            <option value="all">All Categories</option>
+            <option value="Development">Development</option>
+            <option value="Design">Design</option>
+            <option value="Data">Data</option>
+            <option value="Business">Business</option>
+          </select>
+
+          <select id="filterLevel">
+            <option value="all">All Levels</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+          </select>
+
+          <select id="filterType">
+            <option value="all">Free + Paid</option>
+            <option value="Free">Free</option>
+            <option value="Paid">Paid</option>
+          </select>
+
+          <button class="btn btn-outline" id="resetFiltersBtn">
+            Reset
+          </button>
+        </div>
+
+        <div class="courses-grid" id="browseCoursesGrid">
+            ${browseHtml}
+        </div>
+      </section>
   `;
+}
+
+// Search Logic
+function initSearch() {
+  const input = document.getElementById("courseSearchInput");
+  const resetBtn = document.getElementById("resetFiltersBtn");
+
+  if (!input) return;
+
+  input.addEventListener("input", (e) => {
+    const term = e.target.value.toLowerCase();
+    const cards = document.querySelectorAll("#browseCoursesGrid .course-card");
+
+    cards.forEach(card => {
+      const title = card.getAttribute("data-title");
+      if (title.includes(term)) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  });
+
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      input.value = "";
+      input.dispatchEvent(new Event('input')); // Trigger update
+
+      // Reset selects
+      document.querySelectorAll(".filters-grid select").forEach(s => s.value = "all");
+    });
+  }
 }
 
 function renderAssignmentsList() {
@@ -426,7 +523,7 @@ function completeAssignmentMock() {
 }
 
 async function downloadCertificate(courseId) {
-  
+
   // Logic to download
   try {
     // Reuse generate endpoint which returns cert details, 

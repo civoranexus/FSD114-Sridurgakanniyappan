@@ -79,6 +79,7 @@ async function handleSubmit() {
 
     const user = await meRes.json();
     const userRole = (user.role || "").toLowerCase();
+    console.log("User role:", userRole);
     localStorage.setItem("role", userRole);
 
     // Redirect

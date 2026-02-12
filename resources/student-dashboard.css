@@ -123,7 +123,7 @@ body {
   background: var(--white);
   padding: 20px;
   border-radius: 14px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
 }
 
 .course-card h3 {
@@ -178,6 +178,7 @@ button {
   .sidebar {
     display: none;
   }
+
   .main {
     margin-left: 0;
   }
@@ -210,7 +211,7 @@ button {
 .search-wrap input {
   padding: 12px 14px;
   border-radius: 12px;
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   outline: none;
   min-width: 260px;
   background: var(--white);
@@ -228,7 +229,7 @@ button {
 .filters-grid button {
   padding: 12px 14px;
   border-radius: 12px;
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   background: var(--white);
   color: var(--text-dark);
 }
@@ -244,8 +245,8 @@ button {
   background: var(--white);
   border-radius: 18px;
   padding: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .course-head {
@@ -267,7 +268,7 @@ button {
   font-size: 12px;
   padding: 6px 10px;
   border-radius: 999px;
-  background: rgba(27,154,170,0.12);
+  background: rgba(27, 154, 170, 0.12);
   color: var(--primary);
 }
 
@@ -285,7 +286,7 @@ button {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.35);
+  background: rgba(0, 0, 0, 0.35);
   display: none;
   align-items: center;
   justify-content: center;
@@ -303,6 +304,7 @@ button {
   max-width: 520px;
   width: 100%;
 }
+
 .modal-card h3 {
   font-size: 20px;
   margin-bottom: 12px;

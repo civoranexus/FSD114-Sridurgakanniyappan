@@ -8,7 +8,7 @@ from app.db.session import SessionLocal
 from app.models.user import User
 from app.core.config import settings
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login/")
 
 
 def get_db() -> Generator:
@@ -66,16 +66,3 @@ def get_current_active_admin(
     if current_user.role != "admin":
         raise HTTPException(status_code=403, detail="Not enough permissions")
     return current_user
-from fastapi import Depends, HTTPException, status
-from app.models.user import User
-
-def get_current_active_admin(
-    current_user: User = Depends(get_current_active_user),
-) -> User:
-    if current_user.role != "admin":
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="Admin access required"
-        )
-    return current_user
-
